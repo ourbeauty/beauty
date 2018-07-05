@@ -1,0 +1,142 @@
+﻿{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/static/lib/html5shiv.js"></script>
+<script type="text/javascript" src="/static/lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="/static/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" href="/static/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<!--[if IE 6]>
+<script type="text/javascript" src="/static/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>产品分类</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 分类管理 <span class="c-gray en">&gt;</span> 产品类别 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<p></p>
+<nav class="breadcrumb">
+    <i class="Hui-iconfont">&#xe67f;</i> 一级分类
+    <span class="c-gray en"></span>
+    <span class="c-gray en"></span>
+    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="/admin/addcate/1/0/" title="添加" >
+        <i class="Hui-iconfont">&#xe600;</i></a>
+</nav>
+        <div class="mt-20">
+			<table class="table table-border table-bordered table-bg table-hover table-sort">
+				<thead>
+					<tr class="text-c">
+						<th width="40">ID</th>
+						<th width="100">分类名称</th>
+						<th width="100">描述</th>
+						<th width="100">分类代码</th>
+						<th width="100">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+                {% for foo in first %}
+
+					<tr class="text-c va-m">
+						<td>{{ foo.id }}</td>
+						<td>{{ foo.c_name }}</td>
+						<td>{{ foo.c_desc }}</td>
+						<td>{{ foo.c_code }}</td>
+						<td class="td-manage">
+                            <a style="text-decoration:none" class="ml-5" href="/admin/addcate/1/{{ foo.id }}/" title="编辑">
+                                <i class="Hui-iconfont">&#xe6df;</i>
+                            </a>
+                            <a style="text-decoration:none" id="d1-{{ foo.id }}" class="ml-5" onclick="product_change(1,{{ foo.id }})" href="JavaScript:void(0);" title="删除">
+                                <i class="Hui-iconfont">&#xe6e2;</i>
+                            </a>
+                        </td>
+					</tr>
+                {% endfor %}
+				</tbody>
+			</table>
+		</div>
+<p></p>
+<nav class="breadcrumb">
+    <i class="Hui-iconfont">&#xe67f;</i> 二级分类
+    <span class="c-gray en"></span>
+    <span class="c-gray en"></span>
+    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="/admin/addcate/2/0/" title="添加" >
+        <i class="Hui-iconfont">&#xe600;</i></a>
+</nav>
+        <div class="mt-20">
+			<table class="table table-border table-bordered table-bg table-hover table-sort">
+				<thead>
+					<tr class="text-c">
+
+						<th width="40">ID</th>
+						<th width="100">分类名称</th>
+						<th width="100">描述</th>
+						<th width="100">分类代码</th>
+                        <th width="100">上级分类名称</th>
+						<th width="100">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+                {% for bar in second %}
+
+
+
+					<tr class="text-c va-m">
+						<td>{{ bar.id }}</td>
+						<td>{{ bar.c2_name }}</td>
+						<td>{{ bar.c2_desc }}</td>
+						<td>{{ bar.c2_code }}</td>
+						<td>{{ bar.c_code.c_name }}</td>
+						<td class="td-manage">
+{#                            <a style="text-decoration:none" onClick="product_stop(this,'10001')" href="javascript:;" title="下架">#}
+{#                                <i class="Hui-iconfont">&#xe6de;</i>#}
+{#                            </a>#}
+                            <a style="text-decoration:none" class="ml-5" href="/admin/addcate/2/{{ bar.id }}/" title="编辑">
+                                <i class="Hui-iconfont">&#xe6df;</i>
+                            </a>
+                            <a style="text-decoration:none" id="d2-{{ bar.id }}" class="ml-5" onclick="product_change(2,{{ bar.id }})" href="JavaScript:void(0);" title="删除">
+                                <i class="Hui-iconfont">&#xe6e2;</i>
+                            </a>
+                        </td>
+					</tr>
+                {% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+<script type="text/javascript" src="/static/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function product_change(cate,id) {
+        if(confirm('确实要删除该内容吗?')) {
+            $.ajax({
+                url: '/admin/delcate/'+cate+'/'+id+'/',
+                type: 'GET',
+                dataType: 'json',
+                success: function (msg) {
+                    if (msg.code == 200){
+                        $('#d'+cate+'-'+id).parent().parent().remove()
+                    }
+                },
+                error: function (msg) {
+
+                }
+            })
+        }
+
+    }
+
+</script>
+
+
+</body>
+</html>
