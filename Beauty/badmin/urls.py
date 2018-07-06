@@ -17,12 +17,10 @@ urlpatterns = [
     url(r'aper/', views.aper, name='aper'),
     url(r'arol/', views.arol, name='arol'),
     url(r'mlist/', views.mlist, name='mlist'),
-    url(r'ulist/', views.ulist, name='ulist'),
     url(r'plist/', views.plist, name='plist'),
     url(r'pcate/', views.pcate, name='pcate'),
     url(r'olist/', views.olist, name='olist'),
-    url(r'madd/', views.madd, name='madd'),
-    url(r'addadmin/', views.adminadd, name='adminadd'),
+
     # 添加产品分类
     url(r'addcate/(?P<who>\d+)/(?P<num>\d+)/', views.addcate, name='addcate'),
     # 删除分类
