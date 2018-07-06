@@ -12,4 +12,7 @@ urlpatterns = [
     url(r'^cart/',views.cart),
     url(r'^buy/',views.buy,name='buy'),
     url(r'^order/',views.order),
+
+
+
 ]

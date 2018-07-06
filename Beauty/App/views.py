@@ -93,12 +93,17 @@ def add_cart(request):
     goods_id = request.GET.get('id')
     user = 1
     # if user and user.id:
-    Cart.objects.create(
-        u_id=user,
-        g_id=goods_id,
-        g_num=number1,
-        is_select=1
-    )
+    user_carts = Cart.objects.filter(g_id=goods_id).first()
+    if user_carts:
+        user_carts.g_num +=int(number1)
+        user_carts.save()
+    else:
+        Cart.objects.create(
+            u_id=user,
+            g_id=goods_id,
+            g_num=number1,
+            is_select=1
+        )
     data = {'code': 200}
     return JsonResponse(data)
 
@@ -108,11 +113,14 @@ def cart(request):
 
 
 def buy(request):
+
     number1 = request.GET.get('number')
     goods_id = request.GET.get('id')
     user = 1
     goods = Goods.objects.filter(id=goods_id).first()
     price = goods.g_price
+
+
 
     Orders.objects.create(
         u_id=user,
@@ -131,3 +139,8 @@ def buy(request):
 
 def order(request):
     return render(request, 'order.html')
+
+
+
+
+
