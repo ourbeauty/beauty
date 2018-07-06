@@ -22,13 +22,18 @@ urlpatterns = [
     url(r'plist/', views.plist, name='plist'),
     url(r'pcate/', views.pcate, name='pcate'),
     url(r'olist/', views.olist, name='olist'),
+<<<<<<< HEAD
     url(r'madd/', views.madd, name='madd'),
     url(r'addadmin/', views.adminadd, name='adminadd'),
 
-    url(r'plist/', views.plist, name='plist'),
-    url(r'pcate/', views.pcate, name='pcate'),
-    url(r'olist/', views.olist, name='olist'),
+=======
+<<<<<<< HEAD
+    url(r'madd/', views.madd, name='madd'),
+    url(r'addadmin/$', views.adminadd, name='adminadd'),
+=======
+>>>>>>> upstream/dev
 
+>>>>>>> upstream/dev
     # 添加产品分类
     url(r'addcate/(?P<who>\d+)/(?P<num>\d+)/', views.addcate, name='addcate'),
     # 删除分类

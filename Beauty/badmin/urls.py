@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'plist/', views.plist, name='plist'),
     url(r'pcate/', views.pcate, name='pcate'),
     url(r'olist/', views.olist, name='olist'),
+
     url(r'madd/', views.madd, name='madd'),
     url(r'addadmin/', views.adminadd, name='adminadd'),
 
