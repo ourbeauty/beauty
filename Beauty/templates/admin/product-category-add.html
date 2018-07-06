@@ -24,25 +24,53 @@
 </head>
 <body>
 <div class="page-container">
-	<form action="" method="post" class="form form-horizontal" id="form-user-add">
+	{% ifequal cate None %}
+	<form action="/admin/addcate/1/0/" method="post" class="form form-horizontal" id="form-user-add">
+        {% csrf_token %}
+    {% else %}
+    <form action="/admin/addcate/1/{{ cate.id }}/" method="post" class="form form-horizontal" id="form-user-add">
+        {% csrf_token %}
+    {% endifequal %}
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">
 				<span class="c-red">*</span>
 				分类名称：</label>
 			<div class="formControls col-xs-6 col-sm-6">
-				<input type="text" class="input-text" value="" placeholder="" id="user-name" name="product-category-name">
-			</div>
+                 {% ifequal cate None %}
+                <input type="text" class="input-text" value="" placeholder="" id="user-name" name="name">
+                {% else %}
+				<input type="text" class="input-text" value="{{ cate.c_name }}" placeholder="" id="user-name" name="name">
+			{% endifequal %}
+
+            </div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">备注：</label>
+			<label class="form-label col-xs-4 col-sm-2">描述：</label>
 			<div class="formControls col-xs-6 col-sm-6">
-				<textarea name="" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" onKeyUp="$.Huitextarealength(this,100)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+                {% ifequal cate None %}
+				<textarea name="text" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" onKeyUp="$.Huitextarealength(this,100)"></textarea>
+                {% else %}
+                <textarea name="text" cols="" rows="" class="textarea"  placeholder="" onKeyUp="$.Huitextarealength(this,100)">{{ cate.c_desc }}</textarea>
+                {% endifequal %}
+                <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
 			</div>
+		</div>
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+				<span class="c-red">*</span>
+				代码：</label>
+			<div class="formControls col-xs-6 col-sm-6">
+                {% ifequal cate None %}
+                <input type="text" class="input-text" value="" placeholder="必须为数字" id="user-name" name="code">
+                 {% else %}
+                <input type="text" class="input-text" value="{{ cate.c_code }}" placeholder="" id="user-name" name="code">
+                 {% endifequal %}
+            </div>
 		</div>
 		<div class="row cl">
 			<div class="col-9 col-offset-2">
 				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                <input class="btn btn-primary radius" type="button" onclick="goback()" value="&nbsp;&nbsp;取消&nbsp;&nbsp;">
 			</div>
 		</div>
 	</form>
@@ -57,6 +85,12 @@
 <script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+
+<script type="text/javascript">
+    function goback() {
+        window.history.back(-1);
+    }
+</script>
 
 </body>
 </html>

@@ -1,0 +1,271 @@
+<!--_meta 作为公共模版分离出去-->
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="/favicon.ico" >
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="/static/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="/static/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<title>添加商品</title>
+{#<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">#}
+{#<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">#}
+</head>
+<body>
+<article class="page-container">
+    {% ifequal cate2 None %}
+	<form action="/admin/proadd/1/0/" method="post" class="form form-horizontal" enctype="multipart/form-data">
+    {% else %}
+	<form action="/admin/proadd/2/{{ cate2.id }}/" method="post" class="form form-horizontal" enctype="multipart/form-data">
+    {% endifequal %}
+		{% csrf_token %}
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+                {% ifequal cate2 None %}
+				<input type="text" class="input-text" value="" placeholder="" id="pname" name="pname">
+                {% else %}
+                <input type="text" class="input-text" value="{{ cate2.g_name }}" placeholder="" id="pname" name="pname">
+                {% endifequal %}
+			</div>
+		</div>
+
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品描述：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+                {% ifequal cate2 None %}
+				<textarea name="desc" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" onKeyUp="$.Huitextarealength(this,100)"></textarea>
+				{% else %}
+                <textarea name="desc" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" onKeyUp="$.Huitextarealength(this,100)">{{ cate2.g_desc }}</textarea>
+                {% endifequal %}
+                <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品市场价：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+                {% ifequal cate2 None %}
+				<input type="text" class="input-text" value="" placeholder="" id="mktprice" name="mktprice">
+                {% else %}
+				<input type="text" class="input-text" value="{{ cate2.g_mktprice }}" placeholder="" id="mktprice" name="mktprice">
+                {% endifequal %}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品销售价：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+                {% ifequal cate2 None %}
+				<input type="text" class="input-text" placeholder="" name="price" id="price">
+                {% else %}
+				<input type="text" class="input-text" placeholder="" name="price" id="price" value="{{ cate2.g_price }}">
+                {% endifequal %}
+
+			</div>
+		</div>
+
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品库存：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+                {% ifequal cate2 None %}
+				<input type="text" class="input-text" placeholder="" name="inven" id="inven">
+                {% else %}
+				<input type="text" class="input-text" placeholder="" name="inven" id="inven" value="{{ cate2.g_inventory }}">
+                {% endifequal %}
+
+			</div>
+		</div>
+
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>销量：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+                {% ifequal cate2 None %}
+				<input type="text" class="input-text" placeholder="" name="sale" id="sale">
+				{% else %}
+                <input type="text" class="input-text" placeholder="" name="sale" id="sale" value="{{ cate2.g_sale }}">
+                {% endifequal %}
+			</div>
+		</div>
+
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品编号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+                {% ifequal cate2 None %}
+				<input type="text" class="input-text" placeholder="" name="number" id="number">
+				{% else %}
+                <input type="text" class="input-text" placeholder="" name="number" id="number" value="{{ cate2.number }}">
+                {% endifequal %}
+			</div>
+		</div>
+
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品详情：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+            <input type="file" name="pic1" id="pic_selector" multiple/>
+            </div>
+		</div>
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品展示图片：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="file" name="pic2" id="pic_selector1" multiple/>
+            </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>一级分类：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select class="select" id="select1" size="1" name="cate1">
+                    {% for foo in first %}
+
+                        {% ifequal cate2 None %}
+                        <option value="{{ foo.c_code }}">{{ foo.c_code }}</option>
+                        {% else %}
+                            {% ifequal foo.c_code cate2.c_code %}
+                                <option value="{{ foo.c_code }}" selected>{{ foo.c_code }}</option>
+                            {% else %}
+                                <option value="{{ foo.c_code }}">{{ foo.c_code }}</option>
+                            {% endifequal %}
+                        {% endifequal %}
+
+
+                    {% endfor %}
+
+
+				</select>
+				</span> </div>
+		</div>
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>二级分类：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select class="select" id="select2" size="1" name="cate2">
+					<!--<option value="1">add</option>-->
+				</select>
+				</span> </div>
+		</div>
+
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">&nbsp;&nbsp;
+				<input class="btn btn-primary radius" type="button" onclick="goback()" value="&nbsp;&nbsp;取消&nbsp;&nbsp;">
+			</div>
+{#            <input type="submit" value="提交">#}
+		</div>
+	</form>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="/static/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本--> 
+<script type="text/javascript" src="/static/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-member-add").validate({
+		rules:{
+			username:{
+				required:true,
+				minlength:2,
+				maxlength:16
+			},
+			sex:{
+				required:true,
+			},
+			mobile:{
+				required:true,
+				isMobile:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			uploadfile:{
+				required:true,
+			},
+			
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			//$(form).ajaxSubmit();
+			var index = parent.layer.getFrameIndex(window.name);
+			//parent.$('.btn-refresh').click();
+			parent.layer.close(index);
+		}
+	});
+});
+</script>
+<script type="text/javascript">
+    function getcate2() {
+        catecode = $('#select1')[0].value
+        $.ajax({
+            'url':'/admin/getcate/',
+            'type': 'GET',
+            'dataType': 'json',
+            'data': {'catecode':catecode},
+            'success': function (msg) {
+                cate2 = msg.cate2
+                if (cate2.length==0) {
+                	s = '<option value="0">无</option>'
+                } else{
+                	var s = ''
+	                for (var i=0;i<cate2.length;i++){
+	                    s += '<option value="' + cate2[i].c2_code + '">' + cate2[i].c2_code + '</option>'
+	                    
+	                }
+                }
+                $('#select2').html(s)
+            },
+            'error': function (msg) {
+
+            }
+        })
+    }
+    
+    getcate2()
+
+	$('#select1').change(getcate2)
+
+    function goback() {
+        window.history.back(-1);
+    }
+
+
+</script>
+
+
+
+
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

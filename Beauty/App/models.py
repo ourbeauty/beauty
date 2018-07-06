@@ -47,9 +47,9 @@ class Cart(models.Model):
 
 
 class GCategory(models.Model):
-    c_name = models.CharField(max_length=50, blank=True, null=True)
-    c_code = models.IntegerField(blank=True, null=True)
-    c_desc = models.CharField(max_length=255, blank=True, null=True)
+    c_name = models.CharField(max_length=50, blank=True, null=True)  # 一级商品分类
+    c_code = models.IntegerField(blank=True, null=True)  # 一级分类代码
+    c_desc = models.CharField(max_length=255, blank=True, null=True)  # 一级分类描述
 
     class Meta:
         managed = False
@@ -57,10 +57,10 @@ class GCategory(models.Model):
 
 
 class GCategory2(models.Model):
-    c2_name = models.CharField(max_length=50, blank=True, null=True)
-    c2_desc = models.CharField(max_length=255, blank=True, null=True)
-    c2_code = models.IntegerField(blank=True, null=True)
-    c_code = models.ForeignKey(GCategory, models.DO_NOTHING, db_column='c_code')
+    c2_name = models.CharField(max_length=50, blank=True, null=True)  # 二级商品名称
+    c2_desc = models.CharField(max_length=255, blank=True, null=True) # 描述
+    c2_code = models.IntegerField(blank=True, null=True)  # 二级分类
+    c_code = models.ForeignKey(GCategory, models.DO_NOTHING, db_column='c_code')  # 一级分类代码
 
     class Meta:
         managed = False
@@ -68,21 +68,21 @@ class GCategory2(models.Model):
 
 
 class Goods(models.Model):
-    c_code = models.IntegerField()
-    c2_code = models.IntegerField()
-    g_name = models.CharField(max_length=50)
+    c_code = models.IntegerField()  # 一级分类代码
+    c2_code = models.IntegerField()  # 二级分类代码
+    g_name = models.CharField(max_length=50)  #
     g_desc = models.CharField(max_length=255, blank=True, null=True)
-    g_info = models.CharField(max_length=255, blank=True, null=True)
+    g_info = models.CharField(max_length=255, blank=True, null=True)  # 商品详情
     g_mktprice = models.CharField(max_length=20)
     g_price = models.CharField(max_length=20)
-    g_goodsprops = models.CharField(max_length=255, blank=True, null=True)
+    g_goodsprops = models.CharField(max_length=255, blank=True, null=True)  # 商品信息
     g_pics = models.CharField(max_length=255, blank=True, null=True)
-    g_inventory = models.IntegerField()
+    g_inventory = models.IntegerField()  # 库存
     g_sale = models.IntegerField()
     g_status = models.IntegerField()
     g_createtime = models.DateTimeField(blank=True, null=True)
     g_changetime = models.DateTimeField(blank=True, null=True)
-    g_class = models.CharField(max_length=255)
+    g_class = models.CharField(max_length=255)  # 商品编号
 
     class Meta:
         managed = False
