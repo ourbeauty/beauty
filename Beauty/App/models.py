@@ -115,7 +115,7 @@ class Orders(models.Model):
 class User(models.Model):
     u_name = models.CharField(max_length=1024)
     u_pwd = models.CharField(max_length=1024)
-    u_tel = models.CharField(max_length=11, blank=True, null=True)
+    u_tel = models.IntegerField(blank=True, null=True)
     u_ticket = models.TextField()
     u_outtime = models.DateTimeField()
 
