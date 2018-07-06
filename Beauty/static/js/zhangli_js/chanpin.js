@@ -55,13 +55,12 @@ function addShop() {
 
 function add_cart(id) {
     var number = $('#number1').text();
-    var g_inventory = $('#g_inventory').text();
 
     // csrf = $('input[name="csrfmiddlewaretoken"]').val();
     $.ajax({
         url: '/App/add_cart/',
         type: 'GET',
-        data: {'id': id, 'number': number,'g_inventory':g_inventory},
+        data: {'id': id, 'number': number},
         dataType: 'json',
         // headers: {'X-CSRFToken': csrf},
         success: function (msg) {
@@ -69,8 +68,6 @@ function add_cart(id) {
             if (msg.code == '200') {
 
                 location.href = '/App/cart/'
-            }else{
-                alert('商品库存量不足！')
             }
         },
         error: function () {
@@ -82,13 +79,12 @@ function add_cart(id) {
 
 function buy(id) {
     var number = $('#number1').text();
-    var g_inventory = $('#g_inventory').text();
 
     // csrf = $('input[name="csrfmiddlewaretoken"]').val();
     $.ajax({
         url: '/App/buy/',
         type: 'GET',
-        data: {'id': id, 'number': number,'g_inventory':g_inventory},
+        data: {'id': id, 'number': number},
         dataType: 'json',
         // headers: {'X-CSRFToken': csrf},
         success: function (msg) {
@@ -96,10 +92,7 @@ function buy(id) {
             if (msg.code == '200') {
 
                 location.href = '/App/order/'
-            }else{
-                alert('商品库存不足！')
             }
-
         },
         error: function () {
             alert('请求错误！')
