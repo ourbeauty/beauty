@@ -1,2 +1,0 @@
-pymysql
-django==1.11
