@@ -26,8 +26,15 @@ urlpatterns = [
     # 删除分类
     url(r'delcate/(?P<who>\d+)/(?P<num>\d+)/', views.delcate, name='delcate'),
     # 添加商品
-    url(r'proadd/(?P<who>\d+)/(?P<num>\d+)/',views.addproduct, name='poradd'),
+    url(r'proadd/(?P<who>\d+)/(?P<num>\d+)/', views.addproduct, name='poradd'),
     # 获取商品分类
-    url(r'getcate/', views.getcate,name='getcate'),
+    url(r'getcate/', views.getcate, name='getcate'),
+    # 删除商品
+    url(r'delpro/(?P<num>\d+)/', views.delpro, name='delpro'),
+    # 用户登录
+    url(r'login/', views.login, name='login'),
+    url(r'logout/', views.logout, name='logout'),
+    # 获取验证码
+    url(r'check_code/', views.set_code, name='checkcode'),
 
 ]
