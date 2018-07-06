@@ -61,7 +61,9 @@ def charts1(request):
     return render(request, 'admin/charts-1.html')
 
 def alist(request):
-    return render(request, 'admin/admin-list.html')
+    if request.method == 'GET':
+        admins = Admin.objects.all()
+        return render(request, 'admin/admin-list.html', {'admins':admins})
 
 def aper(request):
     return render(request, 'admin/admin-permission.html')
@@ -120,7 +122,6 @@ def plist(request):
 def pcate(request):
     return render(request, 'admin/product-category.html')
 
-
 def olist(request):
     data = {
         'code':'200',
@@ -154,3 +155,20 @@ def madd(request):
                 u_tel=tel
             )
             return render(request, 'admin/member-list.html')
+
+
+def adminadd(request):
+    if request.method == 'GET':
+        return render(request, 'admin/admin-add.html')
+    if request.method == 'POST':
+        username = request.POST.get('adminName')
+        password = request.POST.get('password')
+        admins = Admin.objects.filter(a_account=username)
+        if not admins:
+            Admin.objects.create(
+                a_account=username,
+                a_pwd=password
+            )
+        return HttpResponseRedirect(
+            '/admin/alist/'
+        )
