@@ -11,18 +11,17 @@
         [实名认证获取数据接口](docs/user/user_auths_get.md)
         [退出接口](docs/user/user_logout.md)
 
-#### 房屋模块
-    [我的房源接口](docs/house/house_myhouse.md)
-    [新房源获取地区和设施的接口](docs/house/house_newhouse_area_facility.md)
-    [新房源文字描述上传接口](docs/house/house_newhouse_describe.md)
-    [新房源房屋图片上传接口](docs/house/house_newhouse_image.md)
-    [房源的详细页面接口](docs/house/house_detail.md)
-    [预定房屋页面信息获取接口](docs/house/house_booking_get.md)
+#### 商品模块
+    [主页接口](docs/goods/house_myhouse.md)
+    [分类页面接口](docs/house/house_newhouse_area_facility.md)
+    [分类列表页面接口](docs/house/house_newhouse_describe.md)
+    [添加商品到购物车接口](docs/house/house_newhouse_image.md)
+    [立即购买页面接口](docs/house/house_detail.md)
 
 
 
-    [房屋首页信息请求接口](docs/house/house_index.md)
-    [搜索详情页面接口](docs/house/house_allsearch.md)
+
+
 
 #### 订单模块
     [预定房屋页面信息提交接口](docs/order/house_booking_post.md)
