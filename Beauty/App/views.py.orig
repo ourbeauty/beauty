@@ -1,11 +1,12 @@
-from django.shortcuts import render
-import re
-from django.http import JsonResponse
+<<<<<<< HEAD
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
+# Create your views here.
 from django.core.urlresolvers import reverse
 
 from App.models import Address, User
-from App.models import GCategory, GCategory2, Goods, Cart, Orders, Goodsorder
+
 
 def dizhi(request):
     if request.method == 'GET':
@@ -205,6 +206,14 @@ def deldizhi(request,id):
     if request.method == 'GET':
         Address.objects.filter(id=id).delete()
         return HttpResponseRedirect(reverse('a:dizhi'))
+=======
+import re
+from django.http import JsonResponse
+from django.shortcuts import render
+
+# Create your views here.
+from App.models import GCategory, GCategory2, Goods, Cart, Orders, Goodsorder
+
 
 def classify(request):
     if request.method == 'GET':
@@ -342,3 +351,6 @@ def order(request):
 
 
 
+
+
+>>>>>>> upstream/dev

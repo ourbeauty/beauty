@@ -1,14 +1,25 @@
-from datetime import datetime
-from django.http import JsonResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
+import datetime
 import re
+
 import os
 from time import time
+
 from django.contrib.auth.hashers import check_password
+from django.shortcuts import render
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
+
+# Create your views here.
+from io import BytesIO
+
 from App.models import GCategory, GCategory2, Goods, Admin
 from Beauty.settings import MEDIA_ROOT
 from adminutil.verifications import create_validate_code
+
+
+
+
+# Create your views here.
+
 from App.models import Orders, User, Address, Admin
 
 
@@ -23,26 +34,15 @@ def is_login(fn):
     return wrapper
 
 @is_login
-def index(request):
-    return render(request, 'admin/index.html')
-
-@is_login
-def weclome(request):
-    return render(request, 'admin/welcome.html')
-
-@is_login
-def log(request):
-    return render(request, 'admin/system-log.html')
-
-@is_login
 def changepass(request):
     if request.method == 'GET':
-        user = request.user
-        if user and user.id:
-            administrator = Admin.objects.filter(pk=user.id).first()
+        id = request.session.get('id')
+        if id:
+            administrator = Admin.objects.filter(pk=id).first()
             return render(request, 'admin/change-password.html', {'ad': administrator})
     if request.method == 'POST':
-        a = Admin()
+        id = request.session.get('id')
+        a = Admin.objects.filter(pk=id).first()
         p1 = request.POST.get('newpassword')
         p2 = request.POST.get('newpassword2')
         if p1 == p2:
@@ -51,46 +51,6 @@ def changepass(request):
             return HttpResponseRedirect(
                 '/admin/changepass/'
             )
-
-@is_login
-def charts7(request):
-    return render(request, 'admin/charts-7.html')
-
-@is_login
-def charts6(request):
-    return render(request, 'admin/charts-6.html')
-
-@is_login
-def charts5(request):
-    return render(request, 'admin/charts-5.html')
-
-@is_login
-def charts4(request):
-    return render(request, 'admin/charts-4.html')
-
-@is_login
-def charts3(request):
-    return render(request, 'admin/charts-3.html')
-
-@is_login
-def charts2(request):
-    return render(request, 'admin/charts-2.html')
-
-@is_login
-def charts1(request):
-    return render(request, 'admin/charts-1.html')
-
-@is_login
-def alist(request):
-    return render(request, 'admin/admin-list.html')
-
-@is_login
-def aper(request):
-    return render(request, 'admin/admin-permission.html')
-
-@is_login
-def arol(request):
-    return render(request, 'admin/admin-role.html')
 
 @is_login
 def alist(request):
@@ -144,6 +104,7 @@ def ulist(request):
     #         addrs.save()
     #     return JsonResponse(data)
 
+
 @is_login
 def olist(request):
     data = {
@@ -159,7 +120,7 @@ def olist(request):
         o_id = request.POST.get('o_id')
         myorder = Orders.objects.filter(id=o_id).first()
         myorder.o_status = o_status
-        myorder.o_changetime = datetime.now()
+        myorder.o_changetime = datetime.datetime.now()
         myorder.save()
         return JsonResponse(data)
 
@@ -179,7 +140,6 @@ def madd(request):
             )
             return render(request, 'admin/member-list.html')
 
-
 @is_login
 def adminadd(request):
     if request.method == 'GET':
@@ -197,6 +157,86 @@ def adminadd(request):
             '/admin/alist/'
         )
 
+@is_login
+def index(request):
+    return render(request, 'admin/index.html')
+
+@is_login
+def weclome(request):
+    return render(request, 'admin/welcome.html')
+
+@is_login
+def log(request):
+    return render(request, 'admin/system-log.html')
+
+@is_login
+def charts7(request):
+    return render(request, 'admin/charts-7.html')
+
+@is_login
+def charts6(request):
+    return render(request, 'admin/charts-6.html')
+
+@is_login
+def charts5(request):
+    return render(request, 'admin/charts-5.html')
+
+@is_login
+def charts4(request):
+    return render(request, 'admin/charts-4.html')
+
+@is_login
+def charts3(request):
+    return render(request, 'admin/charts-3.html')
+
+@is_login
+def charts2(request):
+    return render(request, 'admin/charts-2.html')
+
+@is_login
+def charts1(request):
+    return render(request, 'admin/charts-1.html')
+
+@is_login
+def alist(request):
+    return render(request, 'admin/admin-list.html')
+
+@is_login
+def aper(request):
+    return render(request, 'admin/admin-permission.html')
+
+@is_login
+def arol(request):
+    return render(request, 'admin/admin-role.html')
+
+@is_login
+def mlist(request):
+    return render(request, 'admin/member-list.html')
+
+@is_login
+def plist(request):
+    allgoods = Goods.objects.values()
+    for good in allgoods:
+        del good['g_info']
+        good['g_pics'] = good['g_pics'].split(',')[0]
+
+    data = {
+        'all': allgoods,
+    }
+
+    return render(request, 'admin/product-list.html', data)
+
+@is_login
+def pcate(request):
+    data = {
+        'first': GCategory.objects.all(),
+        'second': GCategory2.objects.all(),
+    }
+    return render(request, 'admin/product-category.html', data)
+
+@is_login
+def olist(request):
+    return render(request, 'admin/picture-list.html')
 
 @is_login
 def addcate(request, who, num):
@@ -378,5 +418,3 @@ def set_code(request):
     request.session.set_expiry(0)
     # print(code)
     return HttpResponse(stream.getvalue())
-
-

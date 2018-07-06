@@ -8,8 +8,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+<<<<<<< HEAD
+<link rel="Bookmark" href="/templates/admin/favicon.ico" >
+<link rel="Shortcut Icon" href="/templates/admin/favicon.ico" />
+=======
 <link rel="Bookmark" href="/static/h-ui/favicon.ico" >
 <link rel="Shortcut Icon" href="/static/h-ui/favicon.ico" />
+>>>>>>> upstream/dev
 <!--[if lt IE 9]>
 <script type="text/javascript" src="/static/lib/html5shiv.js"></script>
 <script type="text/javascript" src="/static/lib/respond.min.js"></script>
@@ -52,8 +57,13 @@
 					<a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
 						<li><a href="javascript:void(0);" onClick="myselfinfo()">个人信息</a></li>
+<<<<<<< HEAD
+						<li><a href="#">切换账户</a></li>
+						<li><a href="#">退出</a></li>
+=======
 						<li><a href="/admin/login/">切换账户</a></li>
 						<li><a href="/admin/logout/">退出</a></li>
+>>>>>>> upstream/dev
 				</ul>
 			</li>
 				<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
@@ -113,8 +123,12 @@
 			<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
+<<<<<<< HEAD
 					<li><a data-href="/admin/mlist/" data-title="会员列表" href="javascript:void(0);">有地址的会员列表</a></li>
                     <li><a data-href="/admin/ulist/" data-title="所有会员" href="javascript:void(0);">所有会员列表</a></li>
+=======
+					<li><a data-href="/admin/mlist/" data-title="会员列表" href="javascript:void(0);">会员列表</a></li>
+>>>>>>> upstream/dev
 					<!--<li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">删除的会员</a></li>-->
 					<!--<li><a data-href="member-level.html" data-title="等级管理" href="javascript:;">等级管理</a></li>-->
 					<!--<li><a data-href="member-scoreoperation.html" data-title="积分管理" href="javascript:;">积分管理</a></li>-->
