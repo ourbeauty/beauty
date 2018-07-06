@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^buy/',views.buy,name='buy'),
     url(r'^order/',views.order),
 
-
-
+    url(r'adddizhi/$', views.adddizhi, name='adddizhi'),
+    url(r'changedizhi/(?P<id>\d+)/$', views.changedizhi, name='changedizhi'),
+    url(r'deldizhi/(\d+)/$', views.deldizhi, name='deldizhi'),
+    url(r'dizhi/$', views.dizhi, name='dizhi')
 ]

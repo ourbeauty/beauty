@@ -1,19 +1,16 @@
 import datetime
-import re
 
-import os
-from time import time
-
-from django.contrib.auth.hashers import check_password
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
-
-# Create your views here.
+import os
+from time import time
+from django.contrib.auth.hashers import check_password, make_password
 from io import BytesIO
 
-from App.models import GCategory, GCategory2, Goods, Admin
+from App.models import GCategory, GCategory2, Goods
 from Beauty.settings import MEDIA_ROOT
 from adminutil.verifications import create_validate_code
+from App.models import Orders, User, Address, Admin
 
 
 def is_login(fn):
@@ -40,7 +37,23 @@ def log(request):
 
 @is_login
 def changepass(request):
-    return render(request, 'admin/change-password.html')
+    if request.method == 'GET':
+        id = request.session.get('id')
+        if id:
+            administrator = Admin.objects.filter(pk=id).first()
+            return render(request, 'admin/change-password.html', {'ad': administrator})
+    if request.method == 'POST':
+        id = request.session.get('id')
+        a = Admin.objects.filter(pk=id).first()
+        p1 = request.POST.get('newpassword')
+        p2 = request.POST.get('newpassword2')
+        if p1 == p2:
+            p1 = make_password(p1)
+            a.a_pwd = p1
+            a.save()
+            return HttpResponseRedirect(
+                '/admin/changepass/'
+            )
 
 @is_login
 def charts7(request):
@@ -83,33 +96,111 @@ def arol(request):
     return render(request, 'admin/admin-role.html')
 
 @is_login
+def alist(request):
+    if request.method == 'GET':
+        admins = Admin.objects.all()
+        return render(request, 'admin/admin-list.html', {'admins':admins})
+
+@is_login
 def mlist(request):
-    return render(request, 'admin/member-list.html')
+    data = {
+        'code': '200',
+        'msg': '修改成功'
+    }
+    if request.method == 'GET':
+        users = User.objects.all()
+        addrs = Address.objects.all()
+        return render(request, 'admin/member-list.html', {'users': users, 'addrs': addrs})
+    if request.method == 'POST':
+        addr_id = request.POST.get('sid')
+        addrs = Address.objects.filter(id=addr_id).first()
+        if addrs.u_addrstatus:
+            addrs.u_addrstatus = 0
+            data['u_addrstatus'] = 0
+            addrs.save()
+        else:
+            addrs.u_addrstatus = 1
+            data['u_addrstatus'] = 1
+            addrs.save()
+        return JsonResponse(data)
 
 @is_login
-def plist(request):
-    allgoods = Goods.objects.values()
-    for good in allgoods:
-        del good['g_info']
-        good['g_pics'] = good['g_pics'].split(',')[0]
-
+def ulist(request):
     data = {
-        'all': allgoods,
+        'code': '200',
+        'msg': '修改成功'
     }
-
-    return render(request, 'admin/product-list.html', data)
-
-@is_login
-def pcate(request):
-    data = {
-        'first': GCategory.objects.all(),
-        'second': GCategory2.objects.all(),
-    }
-    return render(request, 'admin/product-category.html', data)
+    if request.method == 'GET':
+        users = User.objects.all()
+        addrs = Address.objects.all()
+        return render(request, 'admin/userlist.html', {'users': users, 'addrs': addrs})
+    # if request.method == 'POST':
+    #     addr_id = request.POST.get('sid')
+    #     addrs = Address.objects.filter(id=addr_id).first()
+    #     if addrs.u_addrstatus:
+    #         addrs.u_addrstatus = 0
+    #         data['u_addrstatus'] = 0
+    #         addrs.save()
+    #     else:
+    #         addrs.u_addrstatus = 1
+    #         data['u_addrstatus'] = 1
+    #         addrs.save()
+    #     return JsonResponse(data)
 
 @is_login
 def olist(request):
-    return render(request, 'admin/picture-list.html')
+    data = {
+        'code':'200',
+        'msg': '请求成功'
+    }
+    if request.method == 'GET':
+        orders = Orders.objects.all()
+        users = User.objects.all()
+        return render(request, 'admin/picture-list.html', {'orders': orders, 'users':users})
+    if request.method == 'POST':
+        o_status = request.POST.get('o_status')
+        o_id = request.POST.get('o_id')
+        myorder = Orders.objects.filter(id=o_id).first()
+        myorder.o_status = o_status
+        myorder.o_changetime = datetime.datetime.now()
+        myorder.save()
+        return JsonResponse(data)
+
+@is_login
+def madd(request):
+    if request.method == 'GET':
+        return render(request, 'admin/member-add.html')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        tel = request.POST.get('mobile')
+        if username and password and tel:
+            User.objects.create(
+                u_name=username,
+                u_pwd=password,
+                u_tel=tel
+            )
+            return render(request, 'admin/member-list.html')
+
+
+@is_login
+def adminadd(request):
+    if request.method == 'GET':
+        return render(request, 'admin/admin-add.html')
+    if request.method == 'POST':
+        username = request.POST.get('adminName')
+        password = request.POST.get('password')
+        password = make_password(password)
+        admins = Admin.objects.filter(a_account=username)
+        if not admins:
+            Admin.objects.create(
+                a_account=username,
+                a_pwd=password
+            )
+        return HttpResponseRedirect(
+            '/admin/alist/'
+        )
+
 
 @is_login
 def addcate(request, who, num):
@@ -291,3 +382,27 @@ def set_code(request):
     request.session.set_expiry(0)
     # print(code)
     return HttpResponse(stream.getvalue())
+
+@is_login
+def pcate(request):
+    data = {
+        'first': GCategory.objects.all(),
+        'second': GCategory2.objects.all(),
+    }
+    return render(request, 'admin/product-category.html', data)
+
+
+@is_login
+def plist(request):
+    allgoods = Goods.objects.values()
+    for good in allgoods:
+        del good['g_info']
+        good['g_pics'] = good['g_pics'].split(',')[0]
+
+    data = {
+        'all': allgoods,
+    }
+
+    return render(request, 'admin/product-list.html', data)
+
+
