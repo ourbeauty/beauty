@@ -1,12 +1,13 @@
-from datetime import datetime
-from django.http import JsonResponse, HttpResponseRedirect
+import datetime
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
-import re
 import os
 from time import time
-from django.contrib.auth.hashers import check_password
-from App.models import GCategory, GCategory2, Goods, Admin
+from django.contrib.auth.hashers import check_password, make_password
+from io import BytesIO
+
+from App.models import GCategory, GCategory2, Goods
 from Beauty.settings import MEDIA_ROOT
 from adminutil.verifications import create_validate_code
 from App.models import Orders, User, Address, Admin
@@ -37,15 +38,17 @@ def log(request):
 @is_login
 def changepass(request):
     if request.method == 'GET':
-        user = request.user
-        if user and user.id:
-            administrator = Admin.objects.filter(pk=user.id).first()
+        id = request.session.get('id')
+        if id:
+            administrator = Admin.objects.filter(pk=id).first()
             return render(request, 'admin/change-password.html', {'ad': administrator})
     if request.method == 'POST':
-        a = Admin()
+        id = request.session.get('id')
+        a = Admin.objects.filter(pk=id).first()
         p1 = request.POST.get('newpassword')
         p2 = request.POST.get('newpassword2')
         if p1 == p2:
+            p1 = make_password(p1)
             a.a_pwd = p1
             a.save()
             return HttpResponseRedirect(
@@ -159,7 +162,7 @@ def olist(request):
         o_id = request.POST.get('o_id')
         myorder = Orders.objects.filter(id=o_id).first()
         myorder.o_status = o_status
-        myorder.o_changetime = datetime.now()
+        myorder.o_changetime = datetime.datetime.now()
         myorder.save()
         return JsonResponse(data)
 
@@ -187,6 +190,7 @@ def adminadd(request):
     if request.method == 'POST':
         username = request.POST.get('adminName')
         password = request.POST.get('password')
+        password = make_password(password)
         admins = Admin.objects.filter(a_account=username)
         if not admins:
             Admin.objects.create(
@@ -378,5 +382,27 @@ def set_code(request):
     request.session.set_expiry(0)
     # print(code)
     return HttpResponse(stream.getvalue())
+
+@is_login
+def pcate(request):
+    data = {
+        'first': GCategory.objects.all(),
+        'second': GCategory2.objects.all(),
+    }
+    return render(request, 'admin/product-category.html', data)
+
+
+@is_login
+def plist(request):
+    allgoods = Goods.objects.values()
+    for good in allgoods:
+        del good['g_info']
+        good['g_pics'] = good['g_pics'].split(',')[0]
+
+    data = {
+        'all': allgoods,
+    }
+
+    return render(request, 'admin/product-list.html', data)
 
 
