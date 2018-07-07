@@ -1,4 +1,5 @@
 import datetime
+import platform
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
@@ -29,6 +30,13 @@ def index(request):
 
 @is_login
 def weclome(request):
+    data = {
+        # 系统名称和版本号
+        'sys_name': platform.platform(),
+    }
+
+
+
     return render(request, 'admin/welcome.html')
 
 @is_login
