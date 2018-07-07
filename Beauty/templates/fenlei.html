@@ -55,14 +55,14 @@
     {% for gcategory in gcategorys %}
         <li>
 
-            <div class="hd"><h2><a href="{% url 'a:classify_list' gcategory.c_code %}">{{ gcategory.c_name }}</a></h2></div>
+            <div class="hd"><h2><a href="{% url 'zl:classify_list' gcategory.c_code %}">{{ gcategory.c_name }}</a></h2></div>
             <div class="bd">
                 <ul class="sub_category_list clearfix">
                     {#                    二级分类#}
                     {% for gcategory2 in gcategory2s %}
                         {% if gcategory2.c_code_id == gcategory.id %}
                             <li>
-                                <a href="{% url 'a:classify_list' gcategory2.c2_code %}">
+                                <a href="{% url 'zl:classify_list' gcategory2.c2_code %}">
                                     <div class="pic"><img src="/static/images/90.png" alt=""></div>
                                     <p class="name">{{ gcategory2.c2_name }}</p>
                                 </a>
@@ -200,13 +200,13 @@
 <div style="display: block;" class="footer_bar openwebview">
     <ul class="warp clearfix">
         <li><!--<li class="on">-->
-            <a href="/home/index" page_click_button="底部_首页">
+            <a href="{% url 'zc:index' %}" page_click_button="底部_首页">
                 <i class="new_icon"></i>
                 <span>首页</span>
             </a>
         </li>
         <li>
-            <a href="fenlei.html" page_click_button="底部_品牌">
+            <a href="{% url 'zl:classify' %}" page_click_button="底部_品牌">
                 <i class="new_icon"></i>
                 <span>分类</span>
             </a>

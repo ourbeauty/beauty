@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 
 # Create your views here.
-from App.models import GCategory, GCategory2, Goods, Cart, Orders, Goodsorder, User, Address
+from App_zl.models import GCategory, GCategory2, Goods, Cart, Orders, Goodsorder, User, Address
 
 
 def dizhi(request):
@@ -132,7 +132,7 @@ def classify(request):
 
 def classify_list(request, code):
     if request.method == 'GET':
-        goods = Goods.objects.filter(c_code__in=code) or Goods.objects.filter(c2_code=code)
+        goods = Goods.objects.filter(c_code=code) or Goods.objects.filter(c2_code=code)
         if goods:
 
             for good in goods:
@@ -152,10 +152,12 @@ def classify_list(request, code):
 
 
         else:
-            return render(request, 'not_found.html')
+            return HttpResponseRedirect(
+                reverse('zl:classify')
+            )
 
 
-def show(request, goods_id=19):
+def show(request, goods_id=70):
     if request.method == 'GET':
         goods = Goods.objects.filter(id=goods_id).first()
 
@@ -172,7 +174,7 @@ def show(request, goods_id=19):
         # 炫罗兰http://www.maxfactorcn.com/images//20170714/fb74bf8f934c2e2a.jpg,
         # 颜色图
         image_colors = goods.g_class
-        if image_colors != 0:
+        if len(image_colors) != 1:
             image_color_list = image_colors[:-1].split(',')
 
             dict = {}
@@ -183,6 +185,9 @@ def show(request, goods_id=19):
                 dict[url] = image_p_w[0]
 
 
+            goods.g_class = dict
+        else:
+            dict = {}
             goods.g_class = dict
 
 
