@@ -91,7 +91,7 @@ function buy(id) {
         dataType: 'json',
         // headers: {'X-CSRFToken': csrf},
         success: function (msg) {
-            alert(msg.code)
+
             if (msg.code == '200') {
 
                 location.href = '/App_zl/order/'

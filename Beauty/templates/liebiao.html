@@ -104,13 +104,13 @@
 <div style="display: block;" class="footer_bar openwebview">
     <ul class="warp clearfix">
         <li><!--<li class="on">-->
-            <a href="/home/index" page_click_button="底部_首页">
+            <a href="{% url 'zc:index' %}" page_click_button="底部_首页">
                 <i class="new_icon"></i>
                 <span>首页</span>
             </a>
         </li>
         <li>
-            <a href="fenlei.html" page_click_button="底部_品牌">
+            <a href="{% url 'zl:classify_list' code %}" page_click_button="底部_品牌">
                 <i class="new_icon"></i>
                 <span>分类</span>
             </a>
