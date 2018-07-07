@@ -1,7 +1,4 @@
-
-
 from django.core.paginator import Paginator
-
 
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -23,6 +20,7 @@ def dizhi(request):
         # users = User.objects.all()
         # addrs = Address.objects.filter(use_id=1)
         # return render(request, 'dizhi_liebiao.html', {'addrs': addrs, 'users': users})
+
 
 # 增加地址
 def adddizhi(request):
@@ -74,16 +72,18 @@ def adddizhi(request):
                 reverse('a:dizhi')
             )
 
-def deldizhi(request,id):
+
+def deldizhi(request, id):
     if request.method == 'GET':
         Address.objects.filter(id=id).delete()
         return HttpResponseRedirect(reverse('a:dizhi'))
 
+
 # 改变地址
-def changedizhi(request,id):
+def changedizhi(request, id):
     if request.method == 'GET':
         addrs = Address.objects.filter(id=id)
-        return render(request, 'xiugai_dizhi.html',{'addrs': addrs})
+        return render(request, 'xiugai_dizhi.html', {'addrs': addrs})
     if request.method == 'POST':
         tel = request.POST.get('mobile')
         province = request.POST.get('province')
@@ -120,6 +120,7 @@ def changedizhi(request,id):
             reverse('a:dizhi')
         )
 
+
 def classify(request):
     if request.method == 'GET':
         gcategorys = GCategory.objects.all()
@@ -140,7 +141,7 @@ def classify_list(request, code):
                 images_list = good.g_pics
                 image = images_list.split(',')[0]
                 good.g_pics = image
-                good.discount = round(10*(float(good.g_price)/float(good.g_mktprice)))
+                good.discount = round(10 * (float(good.g_price) / float(good.g_mktprice)))
 
             # 分页
             page_id = request.GET.get('page_id', 1)
@@ -178,16 +179,14 @@ def show(request, goods_id=70):
             dict = {}
             for image_color in image_color_list:
                 image_p_w = image_color.split('http')
-                image_p_w[1]= 'http' + image_p_w[1]
+                image_p_w[1] = 'http' + image_p_w[1]
                 url = image_p_w[1]
                 dict[url] = image_p_w[0]
-
 
             goods.g_class = dict
         else:
             dict = {}
             goods.g_class = dict
-
 
         goods.discount = round(10 * (float(goods.g_price) / float(goods.g_mktprice)))
 
@@ -242,9 +241,8 @@ def add_cart(request):
         data = {'code': 200}
         return JsonResponse(data)
     else:
-        data = {'code':900}
+        data = {'code': 900}
         return JsonResponse(data)
-
 
 
 def cart(request):
@@ -252,7 +250,6 @@ def cart(request):
 
 
 def buy(request):
-
     number1 = request.GET.get('number')
     goods_id = request.GET.get('id')
     g_inventory = request.GET.get('g_inventory')
@@ -270,19 +267,17 @@ def buy(request):
         o_id = Orders.objects.filter(u_id=user).last().id
         Goodsorder.objects.create(
             g_id=goods_id,
-            ord_id=o_id
+            ord_id=o_id,
+            g_order_num=number1
         )
         data = {'code': 200}
+
         return JsonResponse(data)
+
     else:
-        data = {'code':900}
+        data = {'code': 900}
         return JsonResponse(data)
 
 
 def order(request):
     return render(request, 'order.html')
-
-
-
-
-
