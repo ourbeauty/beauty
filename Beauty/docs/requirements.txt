@@ -1,6 +1,9 @@
-
+<<<<<<< HEAD
 
 django==1.11
 pillow
 pymysql
-
+=======
+pymysql
+django==1.11
+>>>>>>> upstream/dev
