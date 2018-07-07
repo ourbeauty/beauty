@@ -13,6 +13,12 @@ urlpatterns = [
     url(r'charts3/', views.charts3, name='charts3'),
     url(r'charts2/', views.charts2, name='charts2'),
     url(r'charts1/', views.charts1, name='charts1'),
+
+    url(r'chart1/', views.chart1, name='chart1'),
+    url(r'chart4/', views.chart4, name='chart4'),
+    url(r'chart5/', views.chart5, name='chart5'),
+    url(r'chart6/', views.chart6, name='chart6'),
+
     url(r'alist/', views.alist, name='alist'),
     url(r'aper/', views.aper, name='aper'),
     url(r'arol/', views.arol, name='arol'),
