@@ -92,7 +92,7 @@ class Goods(models.Model):
 class Goodsorder(models.Model):
     ord = models.ForeignKey('Orders', models.DO_NOTHING)
     g = models.ForeignKey(Goods, models.DO_NOTHING)
-
+    g_order_num = models.IntegerField()
     class Meta:
         managed = False
         db_table = 'goodsorder'

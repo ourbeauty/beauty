@@ -92,30 +92,31 @@ def charts6(request):
     keys = []
     values = []
     for order in orders:
-        if order.o_changetime.month == 1:
-            data['一月'] += order.o_num
-        elif order.o_changetime.month == 2:
-            data['二月'] += order.o_num
-        elif order.o_changetime.month == 3:
-            data['三月'] += order.o_num
-        elif order.o_changetime.month == 4:
-            data['四月'] += order.o_num
-        elif order.o_changetime.month == 5:
-            data['五月'] += order.o_num
-        elif order.o_changetime.month == 6:
-            data['六月'] += order.o_num
-        elif order.o_changetime.month == 7:
-            data['七月'] += order.o_num
-        elif order.o_changetime.month == 8:
-            data['八月'] += order.o_num
-        elif order.o_changetime.month == 9:
-            data['九月'] += order.o_num
-        elif order.o_changetime.month == 10:
-            data['十月'] += order.o_num
-        elif order.o_changetime.month == 11:
-            data['十一月'] += order.o_num
-        elif order.o_changetime.month == 12:
-            data['十二月'] += order.o_num
+        if order.o_changetime:
+            if order.o_changetime.month == 1:
+                data['一月'] += order.o_num
+            elif order.o_changetime.month == 2:
+                data['二月'] += order.o_num
+            elif order.o_changetime.month == 3:
+                data['三月'] += order.o_num
+            elif order.o_changetime.month == 4:
+                data['四月'] += order.o_num
+            elif order.o_changetime.month == 5:
+                data['五月'] += order.o_num
+            elif order.o_changetime.month == 6:
+                data['六月'] += order.o_num
+            elif order.o_changetime.month == 7:
+                data['七月'] += order.o_num
+            elif order.o_changetime.month == 8:
+                data['八月'] += order.o_num
+            elif order.o_changetime.month == 9:
+                data['九月'] += order.o_num
+            elif order.o_changetime.month == 10:
+                data['十月'] += order.o_num
+            elif order.o_changetime.month == 11:
+                data['十一月'] += order.o_num
+            elif order.o_changetime.month == 12:
+                data['十二月'] += order.o_num
     for key, value in data.items():
         keys.append(key)
         values.append(value)
@@ -137,30 +138,31 @@ def charts5(request):
     lists = []
     order_num = {}
     for order in orders:
-        if order.o_changetime.month == 1:
-            data['一月'] += 1
-        elif order.o_changetime.month == 2:
-            data['二月'] += 1
-        elif order.o_changetime.month == 3:
-            data['三月'] += 1
-        elif order.o_changetime.month == 4:
-            data['四月'] += 1
-        elif order.o_changetime.month == 5:
-            data['五月'] += 1
-        elif order.o_changetime.month == 6:
-            data['六月'] += 1
-        elif order.o_changetime.month == 7:
-            data['七月'] += 1
-        elif order.o_changetime.month == 8:
-            data['八月'] += 1
-        elif order.o_changetime.month == 9:
-            data['九月'] += 1
-        elif order.o_changetime.month == 10:
-            data['十月'] += 1
-        elif order.o_changetime.month == 11:
-            data['十一月'] += 1
-        elif order.o_changetime.month == 12:
-            data['十二月'] += 1
+        if order.o_changetime:
+            if order.o_changetime.month == 1:
+                data['一月'] += 1
+            elif order.o_changetime.month == 2:
+                data['二月'] += 1
+            elif order.o_changetime.month == 3:
+                data['三月'] += 1
+            elif order.o_changetime.month == 4:
+                data['四月'] += 1
+            elif order.o_changetime.month == 5:
+                data['五月'] += 1
+            elif order.o_changetime.month == 6:
+                data['六月'] += 1
+            elif order.o_changetime.month == 7:
+                data['七月'] += 1
+            elif order.o_changetime.month == 8:
+                data['八月'] += 1
+            elif order.o_changetime.month == 9:
+                data['九月'] += 1
+            elif order.o_changetime.month == 10:
+                data['十月'] += 1
+            elif order.o_changetime.month == 11:
+                data['十一月'] += 1
+            elif order.o_changetime.month == 12:
+                data['十二月'] += 1
     for key, value in data.items():
         lists.append([key,value])
     order_num['num'] = lists
@@ -202,30 +204,31 @@ def charts4(request):
     keys = []
     values = []
     for order in orders:
-        if order.o_changetime.month == 1:
-            data['一月'] += order.o_price * order.o_num
-        elif order.o_changetime.month == 2:
-            data['二月'] += order.o_price * order.o_num
-        elif order.o_changetime.month == 3:
-            data['三月'] += order.o_price * order.o_num
-        elif order.o_changetime.month == 4:
-            data['四月'] += order.o_price * order.o_num
-        elif order.o_changetime.month == 5:
-            data['五月'] += order.o_price * order.o_num
-        elif order.o_changetime.month == 6:
-            data['六月'] += order.o_price * order.o_num
-        elif order.o_changetime.month == 7:
-            data['七月'] += order.o_price * order.o_num
-        elif order.o_changetime.month == 8:
-            data['八月'] += order.o_price * order.o_num
-        elif order.o_changetime.month == 9:
-            data['九月'] += order.o_price * order.o_num
-        elif order.o_changetime.month == 10:
-            data['十月'] += order.o_price * order.o_num
-        elif order.o_changetime.month == 11:
-            data['十一月'] += order.o_price * order.o_num
-        elif order.o_changetime.month == 12:
-            data['十二月'] += order.o_price * order.o_num
+        if order.o_changetime:
+            if order.o_changetime.month == 1:
+                data['一月'] += order.o_price * order.o_num
+            elif order.o_changetime.month == 2:
+                data['二月'] += order.o_price * order.o_num
+            elif order.o_changetime.month == 3:
+                data['三月'] += order.o_price * order.o_num
+            elif order.o_changetime.month == 4:
+                data['四月'] += order.o_price * order.o_num
+            elif order.o_changetime.month == 5:
+                data['五月'] += order.o_price * order.o_num
+            elif order.o_changetime.month == 6:
+                data['六月'] += order.o_price * order.o_num
+            elif order.o_changetime.month == 7:
+                data['七月'] += order.o_price * order.o_num
+            elif order.o_changetime.month == 8:
+                data['八月'] += order.o_price * order.o_num
+            elif order.o_changetime.month == 9:
+                data['九月'] += order.o_price * order.o_num
+            elif order.o_changetime.month == 10:
+                data['十月'] += order.o_price * order.o_num
+            elif order.o_changetime.month == 11:
+                data['十一月'] += order.o_price * order.o_num
+            elif order.o_changetime.month == 12:
+                data['十二月'] += order.o_price * order.o_num
     for key,value in data.items():
         keys.append(key)
         values.append(value)

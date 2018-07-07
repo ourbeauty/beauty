@@ -69,6 +69,8 @@ function add_cart(id) {
             if (msg.code == '200') {
 
                 location.href = '/App_zl/cart/'
+            }else{
+                alert('商品库存不足！')
             }
         },
         error: function () {
@@ -93,6 +95,8 @@ function buy(id) {
             if (msg.code == '200') {
 
                 location.href = '/App_zl/order/'
+            }else{
+                alert('操作失败！')
             }
         },
         error: function () {
