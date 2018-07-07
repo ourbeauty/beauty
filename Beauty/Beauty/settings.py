@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'App_zl',
+    'badmin',
+    'App_zc',
+    'App',
     'App_yxr',
 ]
 
@@ -48,7 +52,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'utils.userMiddleware.login',
 ]
 
 ROOT_URLCONF = 'Beauty.urls'
