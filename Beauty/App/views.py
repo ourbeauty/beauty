@@ -4,7 +4,6 @@ from django.core.paginator import Paginator
 
 
 from django.http import JsonResponse, HttpResponseRedirect
-
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 
@@ -19,6 +18,8 @@ def dizhi(request):
             users = User.objects.all()
             addrs = Address.objects.filter(use_id=user.id)
             return render(request, 'dizhi_liebiao.html', {'addrs': addrs, 'users': users})
+        else:
+            return HttpResponseRedirect(reverse('a:classify'))
         # users = User.objects.all()
         # addrs = Address.objects.filter(use_id=1)
         # return render(request, 'dizhi_liebiao.html', {'addrs': addrs, 'users': users})
@@ -28,9 +29,9 @@ def adddizhi(request):
     if request.method == 'GET':
         user = request.user
         if user and user.id:
-            return render(request,'tianxie_dizhi.html')
+            return render(request, 'tianxie_dizhi.html')
         # return render(request, 'tianxie_dizhi.html')
-    if request.method == 'POST':
+    elif request.method == 'POST':
         tel = request.POST.get('mobile')
         province = request.POST.get('province')
         city = request.POST.get('city')
@@ -132,15 +133,14 @@ def classify(request):
 
 def classify_list(request, code):
     if request.method == 'GET':
-        goods = Goods.objects.filter(c_code__in=code) or Goods.objects.filter(c2_code=code)
+        goods = Goods.objects.filter(c_code=code) or Goods.objects.filter(c2_code=code)
         if goods:
 
             for good in goods:
                 images_list = good.g_pics
                 image = images_list.split(',')[0]
                 good.g_pics = image
-                good.discount = round(10 * (float(good.g_price) / float(good.g_mktprice)))
-            # 传入查找类别的code
+                good.discount = round(10*(float(good.g_price)/float(good.g_mktprice)))
 
             # 分页
             page_id = request.GET.get('page_id', 1)
@@ -149,8 +149,6 @@ def classify_list(request, code):
 
             data = {'goods': page, 'code': code}
             return render(request, 'liebiao.html', data)
-
-
         else:
             return render(request, 'not_found.html')
 
@@ -249,6 +247,7 @@ def cart(request):
 
 
 def buy(request):
+
     number1 = request.GET.get('number')
     goods_id = request.GET.get('id')
     g_inventory = request.GET.get('g_inventory')
@@ -277,6 +276,7 @@ def buy(request):
 
 def order(request):
     return render(request, 'order.html')
+
 
 
 
