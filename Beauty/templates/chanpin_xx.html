@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/static/style/3c30a65871.layout.min.css">
     <link rel="stylesheet" href="/static/style/86fe49ca90.common.min.css">
     <link rel="stylesheet" type="text/css" href="/static/style/footer.css">
-{#    # 下面三个，我自己添加的样式#}
+    # 下面三个，我自己添加的样式
     <link type="text/css" rel="stylesheet" href="/static/css/css.css">
     <script src="/static/js/jquery-1.9.1.min.js"></script>
     <script src="/static/js/index.js"></script>
@@ -123,15 +123,13 @@
                         <span class="tit">颜色分类</span>
                     </p>
                     <ul class="good_sizechioce clearfix" data-mersale="true">
-                        {% for url in goods.g_class %}
 
                         <li data-size="111888896" class="choose" data-maxamount="2" data-minamount="1"
-                            data-sizestock="11" style="height: 100px;width: 100px;">
-                            <img src="{{ url }}" alt="{{ url.url }}" title="{{ goods.url}}"
+                            data-sizestock="11" style="height: 100px;">
+                            <img src="{{ goods.g_class_p }}" alt="{{ goods.g_class_w }}" title="{{ goods.g_class_w }}"
                                  width="100" height="100">
 
                         </li>
-                        {% endfor %}
 
 
                     </ul>
@@ -199,7 +197,7 @@
                             </tr>
                             <tr>
                                 <td class="dc_table_tit">库存</td>
-                                <td id="g_inventory">{{ goods.g_inventory }}</td>
+                                <td>{{ goods.g_inventory }}</td>
                             </tr>
                             <tr>
                                 <td class="dc_table_tit">商品编号：</td>
