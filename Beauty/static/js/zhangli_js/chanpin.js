@@ -3,7 +3,7 @@ function subShop() {
     var number = $('#number1').text();
 
     $.ajax({
-        url: '/App/subgoods/',
+        url: '/App_zl/subgoods/',
         type: 'GET',
         data: {'number': number},
         // headers:{'X-CSRFToken': csrf},
@@ -30,7 +30,7 @@ function addShop() {
     var number = $('#number1').text();
 
     $.ajax({
-        url: '/App/addgoods/', // 通过那个函数方法来实现想要得方法
+        url: '/App_zl/addgoods/', // 通过那个函数方法来实现想要得方法
         type: 'GET',  // 请求类型
         // headers:{'X-CSRFToken': csrf}, // 解决csrf验证得问题
         data: {'number': number},  //这里是将页面传入的参数，返回到函数方法中。
@@ -55,19 +55,20 @@ function addShop() {
 
 function add_cart(id) {
     var number = $('#number1').text();
+    var g_inventory= $('#g_inventory').text();
 
     // csrf = $('input[name="csrfmiddlewaretoken"]').val();
     $.ajax({
-        url: '/App/add_cart/',
+        url: '/App_zl/add_cart/',
         type: 'GET',
-        data: {'id': id, 'number': number},
+        data: {'id': id, 'number': number,'g_inventory':g_inventory},
         dataType: 'json',
         // headers: {'X-CSRFToken': csrf},
         success: function (msg) {
 
             if (msg.code == '200') {
 
-                location.href = '/App/cart/'
+                location.href = '/App_zl/cart/'
             }
         },
         error: function () {
@@ -79,19 +80,19 @@ function add_cart(id) {
 
 function buy(id) {
     var number = $('#number1').text();
-
+    var g_inventory= $('#g_inventory').text();
     // csrf = $('input[name="csrfmiddlewaretoken"]').val();
     $.ajax({
-        url: '/App/buy/',
+        url: '/App_zl/buy/',
         type: 'GET',
-        data: {'id': id, 'number': number},
+        data: {'id': id, 'number': number,'g_inventory':g_inventory},
         dataType: 'json',
         // headers: {'X-CSRFToken': csrf},
         success: function (msg) {
 
             if (msg.code == '200') {
 
-                location.href = '/App/order/'
+                location.href = '/App_zl/order/'
             }
         },
         error: function () {

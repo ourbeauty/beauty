@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from App import views
+from App_zl import views
 
 urlpatterns = [
     url(r'^classify/$', views.classify, name='classify'),

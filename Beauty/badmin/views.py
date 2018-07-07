@@ -9,10 +9,10 @@ from time import time
 from django.contrib.auth.hashers import check_password, make_password
 from io import BytesIO
 
-from App.models import GCategory, GCategory2, Goods
+from App_zl.models import GCategory, GCategory2, Goods
 from Beauty.settings import MEDIA_ROOT
 from adminutil.verifications import create_validate_code
-from App.models import Orders, User, Address, Admin
+from App_zl.models import Orders, User, Address, Admin
 
 
 def is_login(fn):
@@ -80,18 +80,159 @@ def changepass(request):
 @is_login
 def charts7(request):
     return render(request, 'admin/charts-7.html')
-
+@is_login
+def chart6(request):
+    return render(request, 'admin/charts-6.html')
 @is_login
 def charts6(request):
-    return render(request, 'admin/charts-6.html')
+    # 月销售量
+    orders = Orders.objects.filter(o_status__in=[1, 2, 3])
+    data = {'一月': 0, '二月': 0, '三月': 0, '四月': 0, '五月': 0, '六月': 0,
+            '七月': 0, '八月': 0, '九月': 0, '十月': 0, '十一月': 0, '十二月': 0, }
+    keys = []
+    values = []
+    for order in orders:
+        if order.o_changetime.month == 1:
+            data['一月'] += order.o_num
+        elif order.o_changetime.month == 2:
+            data['二月'] += order.o_num
+        elif order.o_changetime.month == 3:
+            data['三月'] += order.o_num
+        elif order.o_changetime.month == 4:
+            data['四月'] += order.o_num
+        elif order.o_changetime.month == 5:
+            data['五月'] += order.o_num
+        elif order.o_changetime.month == 6:
+            data['六月'] += order.o_num
+        elif order.o_changetime.month == 7:
+            data['七月'] += order.o_num
+        elif order.o_changetime.month == 8:
+            data['八月'] += order.o_num
+        elif order.o_changetime.month == 9:
+            data['九月'] += order.o_num
+        elif order.o_changetime.month == 10:
+            data['十月'] += order.o_num
+        elif order.o_changetime.month == 11:
+            data['十一月'] += order.o_num
+        elif order.o_changetime.month == 12:
+            data['十二月'] += order.o_num
+    for key, value in data.items():
+        keys.append(key)
+        values.append(value)
+    list = {}
+    list['month'] = keys
+    list['sales'] = values
+    return JsonResponse(list)
 
 @is_login
-def charts5(request):
+def chart5(request):
+
     return render(request, 'admin/charts-5.html')
 
 @is_login
+def charts5(request):
+    orders = Orders.objects.all()
+    data = {'一月': 0, '二月': 0, '三月': 0, '四月': 0, '五月': 0, '六月': 0,
+            '七月': 0, '八月': 0, '九月': 0, '十月': 0, '十一月': 0, '十二月': 0, }
+    lists = []
+    order_num = {}
+    for order in orders:
+        if order.o_changetime.month == 1:
+            data['一月'] += 1
+        elif order.o_changetime.month == 2:
+            data['二月'] += 1
+        elif order.o_changetime.month == 3:
+            data['三月'] += 1
+        elif order.o_changetime.month == 4:
+            data['四月'] += 1
+        elif order.o_changetime.month == 5:
+            data['五月'] += 1
+        elif order.o_changetime.month == 6:
+            data['六月'] += 1
+        elif order.o_changetime.month == 7:
+            data['七月'] += 1
+        elif order.o_changetime.month == 8:
+            data['八月'] += 1
+        elif order.o_changetime.month == 9:
+            data['九月'] += 1
+        elif order.o_changetime.month == 10:
+            data['十月'] += 1
+        elif order.o_changetime.month == 11:
+            data['十一月'] += 1
+        elif order.o_changetime.month == 12:
+            data['十二月'] += 1
+    for key, value in data.items():
+        lists.append([key,value])
+    order_num['num'] = lists
+    return JsonResponse(order_num)
+
+@is_login
+def chart1(request):
+
+    return render(request,'admin/charts-1.html')
+
+@is_login
+def charts1(request):
+    # 分类产品的累计销量
+    name = []
+    sale = []
+    goods = Goods.objects.all()
+    for good in goods:
+        name.append(good.g_name)
+        sale.append(good.g_sale)
+    data ={
+
+        'name': name,
+        'sale': sale
+    }
+
+    return JsonResponse(data)
+
+
+@is_login
+def chart4(request):
+
+    return render(request,'admin/charts-4.html')
+@is_login
 def charts4(request):
-    return render(request, 'admin/charts-4.html')
+    # 月销售额
+    orders = Orders.objects.filter(o_status__in=[1,2,3])
+    data = {'一月':0,'二月':0,'三月':0,'四月':0,'五月':0,'六月':0,
+            '七月': 0,'八月':0,'九月':0,'十月':0,'十一月':0,'十二月':0,}
+    keys = []
+    values = []
+    for order in orders:
+        if order.o_changetime.month == 1:
+            data['一月'] += order.o_price * order.o_num
+        elif order.o_changetime.month == 2:
+            data['二月'] += order.o_price * order.o_num
+        elif order.o_changetime.month == 3:
+            data['三月'] += order.o_price * order.o_num
+        elif order.o_changetime.month == 4:
+            data['四月'] += order.o_price * order.o_num
+        elif order.o_changetime.month == 5:
+            data['五月'] += order.o_price * order.o_num
+        elif order.o_changetime.month == 6:
+            data['六月'] += order.o_price * order.o_num
+        elif order.o_changetime.month == 7:
+            data['七月'] += order.o_price * order.o_num
+        elif order.o_changetime.month == 8:
+            data['八月'] += order.o_price * order.o_num
+        elif order.o_changetime.month == 9:
+            data['九月'] += order.o_price * order.o_num
+        elif order.o_changetime.month == 10:
+            data['十月'] += order.o_price * order.o_num
+        elif order.o_changetime.month == 11:
+            data['十一月'] += order.o_price * order.o_num
+        elif order.o_changetime.month == 12:
+            data['十二月'] += order.o_price * order.o_num
+    for key,value in data.items():
+        keys.append(key)
+        values.append(value)
+    list = {}
+    list['month'] = keys
+    list['sales'] = values
+    return JsonResponse(list)
 
 @is_login
 def charts3(request):
@@ -101,9 +242,6 @@ def charts3(request):
 def charts2(request):
     return render(request, 'admin/charts-2.html')
 
-@is_login
-def charts1(request):
-    return render(request, 'admin/charts-1.html')
 
 @is_login
 def alist(request):
