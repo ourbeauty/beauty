@@ -1,5 +1,6 @@
 import datetime
 import platform
+import socket
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
@@ -15,7 +16,7 @@ from App.models import Orders, User, Address, Admin
 
 
 def is_login(fn):
-    def wrapper(request, *args, **kwargs):
+    def wrapper(request,*args, **kwargs):
         if request.session.get('id', None):
             test = fn(request, *args, **kwargs)
             return test
@@ -26,18 +27,31 @@ def is_login(fn):
 
 @is_login
 def index(request):
-    return render(request, 'admin/index.html')
+    data = {
+        'username': Admin.objects.get(id=int(request.session.get('id'))).a_account,
+    }
+    return render(request, 'admin/index.html', data)
 
 @is_login
 def weclome(request):
     data = {
         # 系统名称和版本号
+        'goods': Goods.objects.all().count(),
+        'orders': Orders.objects.all().count(),
+        'users': User.objects.all().count(),
+        'admins': Admin.objects.all().count(),
         'sys_name': platform.platform(),
+        'hostname': socket.gethostname(),
+        'ip': socket.gethostbyname(socket.gethostname()),
+        'nowtime': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'cpu_info':platform.processor(),
+        'nowuser': Admin.objects.get(id=int(request.session.get('id'))).a_account,
+        'sessionid': request.session.session_key,
     }
 
 
 
-    return render(request, 'admin/welcome.html')
+    return render(request, 'admin/welcome.html', data)
 
 @is_login
 def log(request):
@@ -256,7 +270,7 @@ def delcate(request, who, num):
         GCategory2.objects.get(id=num).delete()
     return JsonResponse({"code": 200})
 
-@is_login
+
 def save_image(lists):
     g_info = ''
     for image in lists:
