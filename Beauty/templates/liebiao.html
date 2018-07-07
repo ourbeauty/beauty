@@ -45,11 +45,11 @@
     <div class="J-beauty-single-list" style="margin-bottom:8px;padding-bottom:8px;">
         {% for good in goods %}
         <dl class="beauty_list clearfix">
-            <dt>
+            <dt style="height: 100px;">
                 <a href="{% url 'a:show' good.id %}" class="clearfix">
                     <img src="{{ good.g_pics }}"
                          data-original="//upload/merchandise/271063/MZPD-6959974000551-14_262x166_80.jpg" width="130"
-                         class="J_lazy" style="display: inline;">
+                         class="J_lazy" style="display: inline; height: 99px;">
                 </a>
             </dt>
             <dd>
@@ -64,31 +64,6 @@
         </dl>
         {% endfor %}
 
-{#        <dl class="beauty_list clearfix">#}
-{#            <dt><a href="//beauty-detail-0-43291884.html" class="clearfix"> <img#}
-{#                    src="/static/lb_img/MZZ-6942700225939-14_262x166_80.jpg" width="130" class="J_lazy"#}
-{#                    style="display: inline;"> </a></dt>#}
-{#            <dd><a href="//beauty-detail-0-43291884.html"><p class="name">韩束 兰花滋润霜 50g</p></a>#}
-{#                <p class="beauty_p_div"><span class="beauty_pice">¥78</span> <span class="fontstyle">¥120</span></p>#}
-{#                <p class="bl_num"><span class="beautyacount">6.5折</span><span class="u-beauty-salecount">1265人购买</span>#}
-{#                </p>#}
-{#                <div class="beautycart" data-bid="322751"><a href="">购买</a></div>#}
-{#            </dd>#}
-{#        </dl>#}
-{##}
-{#        <dl class="beauty_list clearfix">#}
-{#            <dt><a href="//beauty-detail-0-42459116.html" class="clearfix"> <img#}
-{#                    src="/static/lb_img/MZPD-6956497900900-14_262x166_80.jpg" width="130" class="J_lazy"#}
-{#                    style="display: inline;"> </a>#}
-{#            </dt>#}
-{#            <dd>#}
-{#                <a href="//beauty-detail-0-42459116.html"><p class="name">PF79 茶树控油补水桑蚕丝面膜30g*5p</p></a>#}
-{#                <p class="beauty_p_div"><span class="beauty_pice">¥38</span> <span class="fontstyle">¥99</span></p>#}
-{#                <p class="bl_num"><span class="beautyacount">3.8折</span><span class="u-beauty-salecount">1088人购买</span>#}
-{#                </p>#}
-{#                <div class="beautycart"><a href="">购买</a></div>#}
-{#            </dd>#}
-{#        </dl>#}
 
 
     </div>
@@ -96,6 +71,23 @@
 
 </div>
 
+
+
+{#分页页面#}
+
+<div style="text-align: center">
+    <h4>一共{{ goods.paginator.num_pages }}页/ 一共{{ goods.paginator.count }}条</h4>
+<h5>{% for i in goods.paginator.page_range %}
+    <a href="/App/classify_list/{{ code }}/?page_id={{ i }}">{{ i }}</a>
+{% endfor %}</h5>
+{% if goods.has_previous %}
+    <a href="/App/classify_list/{{ code }}/?page_id={{ goods.previous_page_number }}">上一页</a>
+{% endif %}
+当前第{{ goods.number }}页
+{% if goods.has_next %}
+    <a href="/App/classify_list/{{ code }}?page_id={{ goods.next_page_number }}">下一页</a>
+{% endif %}
+</div>
 
 <!--以下是底部样式-->
 
