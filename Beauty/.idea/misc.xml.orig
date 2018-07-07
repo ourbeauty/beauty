@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
 <<<<<<< HEAD
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 (flaskenv)" project-jdk-type="Python SDK" />
-</project>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 (shopping)" project-jdk-type="Python SDK" />
 =======
   <component name="ProjectDictionaryState">
     <dictionary name="Administrator" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 virtualenv at F:\beauty\venv" project-jdk-type="Python SDK" />
-</project>
 >>>>>>> upstream/dev
+</project>
