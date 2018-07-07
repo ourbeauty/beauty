@@ -102,8 +102,8 @@ class Orders(models.Model):
     u = models.ForeignKey('User', models.DO_NOTHING, blank=True, null=True)
     o_price = models.FloatField()
     o_status = models.IntegerField()
-    o_creattime = models.DateTimeField()
-    o_changetime = models.DateTimeField()
+    o_creattime = models.DateTimeField(auto_now_add=True)
+    o_changetime = models.DateTimeField(auto_now=True)
     o_num = models.IntegerField()
     o_goods = models.ManyToManyField(Goods, through='Goodsorder')
 
