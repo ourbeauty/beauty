@@ -1,11 +1,10 @@
-<<<<<<< HEAD
-import re
+
 
 from django.core.paginator import Paginator
-from django.http import JsonResponse
-=======
+
+
 from django.http import JsonResponse, HttpResponseRedirect
->>>>>>> upstream/dev
+
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 
