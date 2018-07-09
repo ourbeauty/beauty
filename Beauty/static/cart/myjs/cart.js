@@ -280,7 +280,7 @@ function all_settelment() {
             dataType: 'json',
             success: function (data) {
                 if (data.code == 200) {
-                    url = 'http://127.0.0.1:8000/cart/settlement1?&total=' + data.total_price + '&mkttotal=' + data.mkt_total_price
+                    url = 'http://120.78.188.128/cart/settlement1?&total=' + data.total_price + '&mkttotal=' + data.mkt_total_price
                     window.location.href = url
 
                 }
@@ -299,7 +299,7 @@ function one_order(num) {
             data: {'g_id': num, 'g_num': good_num},
             success: function (data) {
                 if (data.code == 200) {
-                    url = 'http://127.0.0.1:8000/cart/settlement1?&total=' + data.total_price + '&mkttotal=' + data.mkt_total_price
+                    url = 'http://120.78.188.128/cart/settlement1?&total=' + data.total_price + '&mkttotal=' + data.mkt_total_price
                     window.location.href = url
                 }
             }
