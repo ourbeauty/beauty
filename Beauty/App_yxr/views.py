@@ -12,7 +12,7 @@ from App_yxr.models import User, Cart, Orders, Goods, Goodsorder
 
 
 # 用户登录
-def login(request):
+def login(request,id,code=1):
     if request.method == 'GET':
         return render(request,'user/user_login.html')
     if request.method == 'POST':
@@ -28,7 +28,10 @@ def login(request):
                 for i in range(8):
                     u_ticket += random.choice(s)
                 # 设置cookie
-                response = HttpResponseRedirect(reverse('yxr:user'))
+                if code =='1':
+                    response = HttpResponseRedirect(reverse('yxr:user'))
+                elif code == '1000':
+                    response = HttpResponseRedirect(reverse('zl:show',args=(id,)))
                 u_outtime = datetime.now() + timedelta(days=1)
                 response.set_cookie('u_ticket',u_ticket,expires=u_outtime)
                 user[0].u_ticket=u_ticket
@@ -91,10 +94,9 @@ def user(request):
 
 
 def allorders(requset):
-
     if requset.method == 'GET':
-        user_id = requset.session['user_id']
-        orders = Orders.objects.filter(pk=user_id).all()
+        u_id = requset.session.get('user_id')
+        orders = Orders.objects.filter(pk=u_id).all()
         data = {
             'orders':orders
         }
@@ -102,29 +104,33 @@ def allorders(requset):
 
 def wait_pay(request):
     if request.method == 'GET':
-        user_id = request.session['user_id']
-        orders = Orders.objects.filter(pk=user_id).all()
-        olist = []
-        for i in orders:
-            if i.o_status == 0:
-                olist.append()
-            else:
-                pass
+        if 'user_id' in request.session:
 
-        return render(request,'user/daizhifu.html',{'olist':olist})
+            user_id = request.session.get('user_id')
+            orders = Orders.objects.filter(pk=user_id).all()
+            olist = []
+            for i in orders:
+                if i.o_status == 0:
+                    olist.append()
+                else:
+                    pass
+
+            return render(request,'user/daizhifu.html',{'olist':olist})
 
 def end_pay(request):
     if request.method == 'GET':
-        user_id = request.session['user_id']
-        orders = Orders.objects.filter(pk=user_id).all()
+        if 'user_id' in request.session:
 
-        olist1 = []
-        for i in orders:
-            if i.o_status == 1:
-                olist1.append()
-            else:
-                pass
-        return render(request,'user/daishouhuo.html',{'olist1':olist1})
+            user_id = request.session.get('user_id')
+            orders = Orders.objects.filter(pk=user_id).all()
+
+            olist1 = []
+            for i in orders:
+                if i.o_status == 1:
+                    olist1.append()
+                else:
+                    pass
+            return render(request,'user/daishouhuo.html',{'olist1':olist1})
 
 
 

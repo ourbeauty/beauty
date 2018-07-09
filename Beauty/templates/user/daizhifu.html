@@ -47,7 +47,7 @@
 <!--以下的模块为各种状态订单通用-->
 
 <!--商品清单-->
-{% for i in olist.goodsorder_set.all %}
+{% for i in olist.goodsorder_set.g_id %}
 <div class="userdiv">
   <div class="orderlisttit">商品详情 </div>
   <div class="orderdeatilbox clearfix">
@@ -57,7 +57,8 @@
       <p class="cart_g_name">{{ i.goods.g_name }}</p>
       <p class="space10"></p>
       <p class="g_d_price">{{ i.goods.g_price }}</p>
-      <p><span class="fr">{{ i.o_num }}</span></p>
+        {% endfor %}
+      <p><span class="fr">{{ olist.o_num }}</span></p>
     </div>
     </a>
   </div>
@@ -69,7 +70,7 @@
 	</div>
 	
 </div>
-        {% endfor %}
+
 
 
 
