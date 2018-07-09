@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="baidu-site-verification" content="t7oDT96Amk">
+<title>待支付</title>
+<meta content="" name="keywords">
+<meta content="" name="description">
+<meta name="sogou_site_verification" content="G7nmLR75yc">
+<meta name="baidu-tc-cerfication" content="0a8c6d28b570b218f78510c29be4529b">
+<meta name="360-site-verification" content="8b6121969d78afda8caeb69053fa29d9">
+
+
+<link rel="stylesheet" href="../../static/style/c3e09ac36d.css">
+<link rel="stylesheet" href="../../static/style/86fe49ca90.css">
+<link rel="stylesheet" type="text/css" href="../../static/style/footer.css">
+
+<script>__STAT.add('head_load');</script>
+
+</head>
+
+<body style="padding-bottom: initial;" class=" hPC">
+
+
+
+
+
+
+		<header id="header" class="u-header clearfix">
+	    <!--返回按钮根据程序判断来源，返回上一级-->
+		 		 <!-- 非微信扫码进入的用户 -->
+	    <div class="u-hd-left f-left">
+                <a href="javascript:void(0)" class="J_backToPrev"><span class="u-icon i-hd-back"></span></a>
+                </div>
+			     <div class="u-hd-tit"><span>订单详情</span></div>
+		       	    <div class="u-hd-right f-right"><a href="" ><span class="u-icon i-hd-home"></span></a></div>
+      		 	</header>
+	
+<div class="space10"></div>
+
+
+
+<!--以下的模块为各种状态订单通用-->
+
+<!--商品清单-->
+{% for i in olist.goodsorder_set.g_id %}
+<div class="userdiv">
+  <div class="orderlisttit">商品详情 </div>
+  <div class="orderdeatilbox clearfix">
+      <div class="orderdeatil clearfix">
+    <a href=""><img src="{{ i.goods.g_pics }}" class="fl" height="80" width="80">
+    <div class="user_orderlist_r">
+      <p class="cart_g_name">{{ i.goods.g_name }}</p>
+      <p class="space10"></p>
+      <p class="g_d_price">{{ i.goods.g_price }}</p>
+        {% endfor %}
+      <p><span class="fr">{{ olist.o_num }}</span></p>
+    </div>
+    </a>
+  </div>
+    </div>
+	
+	<div class="orderdeatilbox clearfix border_t"><p class="qx_p">
+	   <a class="dzf_quxiao_button" href="">取消订单</a>
+	   <a class="dzf_zhifu" href="">立即支付</a></p>
+	</div>
+	
+</div>
+
+
+
+
+
+
+
+
+
+<!--以下是底部样式-->
+
+  <div class="layout-login-area" id="footer">
+			<div class="layout-login">
+						<span class="layout-lg-bar">528062317@qq.com </span>
+						<span class="layout-new-fr"><a href="">反馈</a></span>
+			</div>
+
+			<div class="layout-copyright">© 河北-向暖 版权所有</div>
+	 </div>
+  
+      <a href="#top" class="u-backtop" mars_sead="home_foot_top_btn"></a>
+    <!--以下是浮于显示屏左下角的购物袋-->
+  
+
+
+</body></html>

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'App_zl',
     'badmin',
     'App_zc',
+    'App_yxr',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'Beauty.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,7 +131,7 @@ STATICFILES_DIRS = [
 
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS = {
-    'host': '120.78.188.128',
+    'host': '120.78.188.128 ',
     'port': 6379,
     'db': 0,
     'password': 'admin123',
