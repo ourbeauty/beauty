@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>今日特卖</title>
+    <link rel="stylesheet" type="text/css" href="/static/style/public.css">
+    <link rel="stylesheet" type="text/css" href="/static/style/home.css">
+	<link rel="stylesheet" type="text/css" href="/static/style/footer.css">
+	
+	
+	<link rel="stylesheet" type="text/css" href="/static/style/reset.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/style/common1.css" media="all">
+
+<!--首页幻灯js-->
+<script type="text/javascript" src="/static/style/zepto.js"></script>
+<script type="text/javascript" src="/static/style/swipe.js"></script>
+<!--首页幻灯js end-->
+</head>
+<body>
+    <div class="loading_page" style="display: none;"></div>
+	
+	<div style="overflow:hidden;">
+
+	   <div class="clearboth wrap-logo-zn " id="logo"><img src="/static/images/logo-zn.png"></div>
+
+        <form method="get" action="/App_zc/search/">
+            {% csrf_token %}
+        <div class="searchnew" id="searchContainer"><div class="products-search-item"><div class="main-nav-search "><div class="input-group">
+
+           <input name="searchkey" autocomplete="off" id="input-main-nav-search" class="form-control" title="产品搜索" placeholder="做最美的自己！" type="search" >
+           <span class="input-group-btn">
+           <button class="btn5 submit" type="submit" id="btnSearch" ><i class="search-icon"></i></button>
+           </span>
+
+       </div></div></div></div>
+
+       </form>
+
+    </div>
+	
+    <div class="banner openwebview" >
+
+
+
+	    <div style="-webkit-transform:translate3d(0,0,0);">
+		<div id="banner_box" class="box_swipe">
+			<ul style="list-style: none outside none; transition-duration: 500ms;">
+                <li>
+						<a  href="{% url 'zl:show' wimage1.id  %}">
+							<img src="{{ wimage1.g_info }}" alt="1" style="width: 100%;">
+						</a>
+					</li>
+                <li>
+						<a  href="{% url 'zl:show' wimage2.id  %}">
+							<img src="{{ wimage2.g_info }}" alt="2" style="width: 100%;">
+						</a>
+					</li>
+            </ul>
+			<ol>
+									
+				<li class="on"></li>
+				<li></li>
+			</ol>
+		</div>
+	</div>
+		<script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script>
+
+	</div>
+    <div class="prefecture clearfix openwebview" style="margin-bottom: 8px;">
+	 <a href="{% url 'zl:classify_list' new.c_code %}" data-url="/novelty/list" class="cool" page_click_button="新奇库">
+        <img class="fadeInImg" src="{{ new.g_info }} " style="height: 260px">
+        <i><img class="fadeInImg" src="/static/images/xinqiku_i.png" style="width: 70%"></i>
+     </a>
+<div class="prefecture_r">
+    <a href="{% url 'zl:classify_list' sale.c_code %}" data-url="/recommendproduct/index" class="sale" page_click_button="特卖汇">
+        <img class="fadeInImg" src="{{ sale.g_pics }} " style="height: 125px" >
+        <i>特卖汇</i>
+        <span>实时更新</span>
+    </a>
+</div>
+<div class="prefecture_rb clearfix">
+    <a href="{% url 'zl:classify_list' selling.c_code %}" data-url="/preview/index" class="soon" page_click_button="即将开售">
+        <img class="fadeInImg" src="{{ selling.g_pics }}" style="height: 130px">
+        <i><b>即将开售</b><em>+15</em></i>
+    </a>
+    <a href="{% url 'zl:classify_list' fashion.c_code %}" data-url="/popular/list" class="popular" page_click_button="正在流行">
+        <img class="fadeInImg" src="{{ fashion.g_pics }}" style="height: 130px">
+        <i>正在流行</i>
+    </a>
+</div>
+</div>
+
+    <div class="recommend openwebview">
+        <!--<div style="display: block;" class="tit">
+            <h2>您的专属推荐</h2>
+        </div>-->
+
+{#page_click_button="类目_生活家"#}
+
+        <div class="wrap">
+                <div class="item" >
+            <div class="caption">
+                <h3 class="caption_life"><a href="{% url 'zl:classify_list' d1.c_code %}">底妆专区</a></h3>
+            <!--<span class="browse">(3.6万人正在浏览)</span>-->
+            </div>
+                 <div class="item_brand"><a href="javascript:;" data-url="/index/activity/show/aid/3249" page_click_button="活动">
+                    <img class="fadeInImg" _src="//upload1/2015/0109/5b628ff536acfadbf20fa304389f7b87-142080897751563300.jpg" src="{{ d0.g_info }}">
+
+                    </a></div>
+            <div class="item_con clearfix" page_click_button="单品">
+                <dl><dt><a href="" data-url="//product/detail?pid=15012273794234&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0108/thumb_468_468_0195b80b910d6e07dad39ba9488a604c-142068899393529400.jpg?imageView2/0/w/608/h/608" src="{{ d1.g_pics }}"></a></dt>
+                    <dd><p class="txt">{{ d1.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ d1.g_price}}</em></span><span class="old_price"><i>￥</i><em>{{ d1.g_mktprice }}</em></span></div></dd></dl>
+                <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012276248249&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0109/thumb_608_608_3473c485f3b279ad10589c72099a0fb0-142077246424044300.jpg" src="{{ d2.g_pics}}"></a></dt>
+                    <dd><p class="txt">{{ d2.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ d2.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ d2.g_mktprice }}</em></span></div></dd></dl>
+            </div>
+            </div>
+
+
+            <div class="item" >
+                <div class="caption">
+                    <h3 class="caption_digital"><a href="{% url 'zl:classify_list' y0.c_code %}">眼妆专区</a></h3>
+                    <!--<span class="browse">(3.6万人正在浏览)</span>-->
+                </div>
+                <div class="item_brand"><a href="javascript:;" data-url="/index/activity/show/aid/3191" page_click_button="活动">
+                        <img class="fadeInImg" _src="sy_img/e070369188bbeec93545a11d97c6e5d3-142063605780044600.jpg" src="{{ y0.g_info }}">
+                    </a></div>
+                <div class="item_con clearfix" page_click_button="单品">
+                   <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012273794234&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0108/thumb_468_468_0195b80b910d6e07dad39ba9488a604c-142068899393529400.jpg?imageView2/0/w/608/h/608" src="{{ y1.g_pics }}"></a></dt>
+                    <dd><p class="txt">{{ y1.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ y1.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ y1.g_mktprice }}</em></span></div></dd></dl>
+                <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012276248249&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0109/thumb_608_608_3473c485f3b279ad10589c72099a0fb0-142077246424044300.jpg" src="{{ y2.g_pics}}"></a></dt>
+                    <dd><p class="txt">{{ y2.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ y2.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ y2.g_mktprice }}</em></span></div></dd></dl>
+            </div>
+            </div>
+
+
+            <div class="item" page_click_button="类目_女人街">
+                <div class="caption">
+                    <h3 class="caption_lady"><a href="{% url 'zl:classify_list' c1.c_code %}">唇妆专区</a></h3>
+                    <!--<span class="browse">(3.6万人正在浏览)</span>-->
+                </div>
+                <div class="item_brand">
+                   <a href="javascript:;" data-url="/index/activity/show/aid/3205" page_click_button="活动">
+                        <img class="fadeInImg" _src="sy_img/5f3a79f571e3bce6f849766ffd881faa-142053787039866000.jpg" src="{{ c0.g_info }}">
+                        <span class="special">特卖</span>
+                    </a></div>
+                <div class="item_con clearfix" page_click_button="单品">
+                    <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012268535225&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0107/thumb_608_608_2a763c9b4730e1e729836150cb14064c-142062372441312500.jpg" src=" {{ c1.g_pics }} "></a></dt>
+                        <dd><p class="txt">{{c1.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ c1.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ c1.g_mktprice }}</em></span></div></dd>
+                    </dl>
+                    <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012276432256&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0109/thumb_608_608_6672c393d2b81205554d7d2a1ba4521f-142078611087284600.jpg" src="{{ c2.g_pics }}"></a></dt>
+                        <dd><p class="txt">{{ c2.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ c2.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ c2.g_mktprice }}</em></span></div></dd>
+                    </dl>
+                </div>
+            </div>
+
+
+
+
+            <div class="item" page_click_button="卸妆专区">
+                <div class="caption">
+                    <h3 class="caption_lady"><a href="{% url 'zl:classify_list' x1.c_code %}">卸妆专区</a></h3>
+                    <!--<span class="browse">(3.6万人正在浏览)</span>-->
+                </div>
+                <div class="item_brand">
+                   <a href="javascript:;" data-url="/index/activity/show/aid/3205" page_click_button="活动">
+                        <img class="fadeInImg" _src="sy_img/5f3a79f571e3bce6f849766ffd881faa-142053787039866000.jpg" src="{{ x0.g_info }}">
+
+                    </a></div>
+                <div class="item_con clearfix" page_click_button="单品">
+                    <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012268535225&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0107/thumb_608_608_2a763c9b4730e1e729836150cb14064c-142062372441312500.jpg" src=" {{ x0.g_pics }} "></a></dt>
+                        <dd><p class="txt">{{x0.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ x0.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ x0.g_mktprice }}</em></span></div></dd>
+                    </dl>
+                    <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012268535225&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0107/thumb_608_608_2a763c9b4730e1e729836150cb14064c-142062372441312500.jpg" src=" {{ x1.g_pics }} "></a></dt>
+                        <dd><p class="txt">{{x1.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ x1.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ x1.g_mktprice }}</em></span></div></dd>
+                    </dl>
+                </div>
+
+            </div>
+
+
+    	<div class="layout-login-area" id="footer">
+			<div class="layout-login">
+						<span class="layout-lg-bar">1000phone@qq.com </span>
+						<span class="layout-new-fr"><a href="">反馈</a></span>
+			</div>
+
+			<div class="layout-copyright">© KO.P 版权所有</div>
+	    </div>
+        </div>
+
+
+    </div>
+	
+    <div style="display: block;" class="footer_bar openwebview">
+        <ul class="warp clearfix">
+            <li><!--<li class="on">-->
+                <a href="{% url 'zc:index' %}" page_click_button="底部_首页">
+                    <i class="new_icon"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'zl:classify' %}" page_click_button="底部_品牌">
+                    <i class="new_icon"></i>
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'yxr:user' %}" data-url="/i/index" page_click_button="底部_我的" class="to_personalcenter personalcenternum">
+                    <i class="new_icon"><strong style="display: none;"></strong></i>
+                    <span>我的</span>
+                </a>
+            </li>
+            <li>
+                <a href="gouwuche.html" data-url="/shoppingcart/index" page_click_button="底部_购物车" class="new_car_center">
+                    <i class="new_icon"><strong style="">2</strong></i>
+                    <span>购物车</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+<script src="/static/js/jquery.min.js"></script>
+
+</body>
+
+</html>

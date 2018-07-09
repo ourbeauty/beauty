@@ -25,8 +25,7 @@ SECRET_KEY = '65%4+i%6q##ark-d3!sf$6#29+(v9eghuo^y_5+)4u67suw@2!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -37,7 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cart'
+    'cart',
+    'App_zl',
+    'badmin',
+    'App_zc',
+    'App_yxr',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +129,21 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS = {
+    'host': '120.78.188.128',
+    'port': 6379,
+    'db': 0,
+    'password': 'admin123',
+    'prefix': 'session',
+    'socket_timeout': 1,
+}
+
+SESSION_REDIS_SENTINEL_MASTER_ALIAS = 'sentinel-master'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+MEDIA_URL = '/static/medias/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/medias')

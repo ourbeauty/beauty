@@ -17,7 +17,13 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+<<<<<<< HEAD
     url(r'^App/', include('App.urls', namespace='a')),
     url(r'^cart/', include('cart.urls', namespace='cart'))
+
+
+    url(r'^App_zl/', include('App_zl.urls', namespace='zl')),
+    url(r'^admin/', include('badmin.urls', namespace='admin')),
+    url(r'^App_zc/', include('App_zc.urls', namespace='zc')),
+    url(r'^App_yxr/',include('App_yxr.urls',namespace='yxr')),
 ]
