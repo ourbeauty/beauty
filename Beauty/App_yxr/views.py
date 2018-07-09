@@ -12,7 +12,8 @@ from App_yxr.models import User, Cart, Orders, Goods, Goodsorder
 
 
 # 用户登录
-def login(request,id,code=1):
+def login(request):
+# def login(request,id,code=1):
     if request.method == 'GET':
         return render(request,'user/user_login.html')
     if request.method == 'POST':
