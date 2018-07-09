@@ -69,7 +69,11 @@ function add_cart(id) {
             if (msg.code == '200') {
 
                 location.href = '/App_zl/cart/'
-            }else{
+            }else if(msg.code='1000') {
+
+                location.href='/App_yxr/login/?goods_id='+msg.goods_id+'&code='+msg.code
+            }
+            else{
                 alert('商品库存不足！')
             }
         },
@@ -95,7 +99,10 @@ function buy(id) {
             if (msg.code == '200') {
 
                 location.href = '/App_zl/order/'
-            }else{
+            }else if(msg.code='1000') {
+                location.href='/App_yxr/login/'+msg.goods_id+'/'+msg.code+'/'
+            }
+            else{
                 alert('操作失败！')
             }
         },

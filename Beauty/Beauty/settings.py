@@ -36,9 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cart',
     'App_zl',
     'badmin',
     'App_zc',
+    'App_yxr',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'Beauty.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,7 +137,7 @@ SESSION_REDIS = {
     'db': 0,
     'password': 'admin123',
     'prefix': 'session',
-    'socket_timeout': 1
+    'socket_timeout': 1,
 }
 
 SESSION_REDIS_SENTINEL_MASTER_ALIAS = 'sentinel-master'
