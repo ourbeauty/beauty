@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,7 +6,7 @@
 <meta content="black" name="apple-mobile-web-app-status-bar-style">
 <meta content="telephone=no" name="format-detection">
 <meta name="baidu-site-verification" content="t7oDT96Amk">
-<title>待支付</title>
+<title>更多订单</title>
 <meta content="" name="keywords">
 <meta content="" name="description">
 <meta name="sogou_site_verification" content="G7nmLR75yc">
@@ -36,7 +35,7 @@
 	    <div class="u-hd-left f-left">
                 <a href="javascript:void(0)" class="J_backToPrev"><span class="u-icon i-hd-back"></span></a>
                 </div>
-			     <div class="u-hd-tit"><span>订单详情</span></div>
+			     <div class="u-hd-tit"><span>更多订单</span></div>
 		       	    <div class="u-hd-right f-right"><a href="" ><span class="u-icon i-hd-home"></span></a></div>
       		 	</header>
 	
@@ -47,32 +46,29 @@
 <!--以下的模块为各种状态订单通用-->
 
 <!--商品清单-->
-{% for i in olist %}
+        {% for i in orders_id.goodsorder_set.all %}
 <div class="userdiv">
   <div class="orderlisttit">商品详情 </div>
   <div class="orderdeatilbox clearfix">
       <div class="orderdeatil clearfix">
-    <a href=""><img src="" class="fl" height="80" width="80">
+    <a href=""><img src="{{ i.goods.g_pics }}" class="fl" height="80" width="80">
     <div class="user_orderlist_r">
-      <p class="cart_g_name"></p>
+      <p class="cart_g_name">{{ i.goods.g_name }}</p>
       <p class="space10"></p>
-      <p class="g_d_price">{{ i.o_price }}</p>
-
-      <p><span class="fr">{{ i.o_num }}</span></p>
+      <p class="g_d_price">{{ i.goods.g_price }}</p>
+      <p><span class="fr">数量：{{ i.o_num }}</span></p>
     </div>
     </a>
   </div>
     </div>
 	
 	<div class="orderdeatilbox clearfix border_t"><p class="qx_p">
-	   <a class="dzf_quxiao_button" href="">取消订单</a>
-	   <a class="dzf_zhifu" href="">立即支付</a></p>
+	   <a class="dzf_quxiao_button" href="">删除订单</a>
+	   <a class="dzf_zhifu" href="">再来一单</a></p>
 	</div>
 	
 </div>
-{% endfor %}
-
-
+        {% endfor %}
 
 
 

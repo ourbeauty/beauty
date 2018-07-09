@@ -111,7 +111,7 @@ def wait_pay(request):
             olist = []
             for i in orders:
                 if i.o_status == 0:
-                    olist.append()
+                    olist.append(i)
                 else:
                     pass
 
@@ -127,10 +127,7 @@ def end_pay(request):
             olist1 = []
             for i in orders:
                 if i.o_status == 1:
-                    olist1.append()
+                    olist1.append(i)
                 else:
                     pass
             return render(request,'user/daishouhuo.html',{'olist1':olist1})
-
-
-

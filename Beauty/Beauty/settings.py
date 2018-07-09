@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'App_zl',
     'badmin',
     'App_zc',
-
     'App_yxr',
 ]
 
@@ -129,3 +128,21 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS = {
+    'host': '120.78.188.128 ',
+    'port': 6379,
+    'db': 0,
+    'password': 'admin123',
+    'prefix': 'session',
+    'socket_timeout': 1
+}
+
+SESSION_REDIS_SENTINEL_MASTER_ALIAS = 'sentinel-master'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+MEDIA_URL = '/static/medias/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/medias')
