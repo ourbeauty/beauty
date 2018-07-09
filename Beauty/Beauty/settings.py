@@ -131,12 +131,12 @@ STATICFILES_DIRS = [
 
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS = {
-    'host': '120.78.188.128 ',
+    'host': '120.78.188.128',
     'port': 6379,
     'db': 0,
     'password': 'admin123',
     'prefix': 'session',
-    'socket_timeout': 1
+    'socket_timeout': 1,
 }
 
 SESSION_REDIS_SENTINEL_MASTER_ALIAS = 'sentinel-master'

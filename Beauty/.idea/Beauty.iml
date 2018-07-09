@@ -13,11 +13,7 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-<<<<<<< HEAD
     <orderEntry type="jdk" jdkName="Python 3.6 (benv)" jdkType="Python SDK" />
-=======
-    <orderEntry type="jdk" jdkName="Python 3.6 (beautyenv)" jdkType="Python SDK" />
->>>>>>> upstream/dev
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
@@ -29,11 +25,7 @@
     </option>
   </component>
   <component name="TestRunnerService">
-<<<<<<< HEAD
     <option name="projectConfiguration" value="Twisted Trial" />
     <option name="PROJECT_TEST_RUNNER" value="Twisted Trial" />
-=======
-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
->>>>>>> upstream/dev
   </component>
 </module>
