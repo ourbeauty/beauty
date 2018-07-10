@@ -5,7 +5,6 @@ from App_yxr import views
 urlpatterns = [
     # 登录
     url(r'^login/',views.login, name='login'),
-    # url(r'^login/(\d+)/(\d+)/',views.login, name='login'),
     # 注册
     url(r'^regist/',views.register,name='regist'),
     # 个人中心
@@ -22,3 +21,7 @@ urlpatterns = [
 
 
 ]
+
+
+
+

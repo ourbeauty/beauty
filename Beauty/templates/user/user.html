@@ -15,12 +15,12 @@
 <meta name="baidu-tc-cerfication" content="0a8c6d28b570b218f78510c29be4529b">
 <meta name="360-site-verification" content="8b6121969d78afda8caeb69053fa29d9">
 
-
+{% load static %}
 <link rel="stylesheet" href="../../static/style/3c30a65871.layout.min.css">
 <link rel="stylesheet" href="../../static/style/86fe49ca90.common.min.css">
 <link rel="stylesheet" type="text/css" href="../../static/style/footer.css">
-<script>__STAT.add('head_load');</script>
-
+{#<script>__STAT.add('head_load');</script>#}
+<script src ="{% static 'js/yxr/user.js' %}"></script>
 
 
 </head>
@@ -43,6 +43,8 @@
 <!-- 未登录 -->
 <div class="userinfo">
   <div class="userinfo_content">
+    <a href="{% url 'yxr:login' %}" onclick="login()">登录</a>
+    <a href="{% url 'yxr:logout' %}">注销</a>
 		<p class="username">{{ username }}</p>
   </div>
 </div>
@@ -114,7 +116,7 @@
                 </a>
             </li>
             <li>
-                <a href="gouwuche.html" data-url="/shoppingcart/index" page_click_button="底部_购物车" class="new_car_center">
+                <a href="{% url 'cart:cart' %}" data-url="/shoppingcart/index" page_click_button="底部_购物车" class="new_car_center">
                     <i class="new_icon"><strong style=""></strong></i>
                     <span>购物车</span>
                 </a>
