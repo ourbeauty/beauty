@@ -43,9 +43,13 @@
 <!-- 未登录 -->
 <div class="userinfo">
   <div class="userinfo_content">
-    <a href="{% url 'yxr:login' %}" onclick="login()">登录</a>
-    <a href="{% url 'yxr:logout' %}">注销</a>
-		<p class="username">{{ username }}</p>
+      {% if user_id %}
+        <p class="username">{{ username }}</p>
+          <a href="{% url 'yxr:logout' %}">注销</a>
+      {% else %}
+        <a href="{% url 'yxr:login' %}">登录</a>
+      {% endif %}
+
   </div>
 </div>
 
@@ -117,7 +121,7 @@
             </li>
             <li>
                 <a href="{% url 'cart:cart' %}" data-url="/shoppingcart/index" page_click_button="底部_购物车" class="new_car_center">
-                    <i class="new_icon"><strong style=""></strong></i>
+                    <i class="new_icon"></i>
                     <span>购物车</span>
                 </a>
             </li>
