@@ -21,6 +21,8 @@
     <link rel="stylesheet" type="text/css" href="/static/style/footer.css">
 
     {#<script>__STAT.add('head_load');</script>#}
+    <script src="/static/js/zhangli_js/liebiao.js"></script>
+    <script src="/static/js/jquery-1.9.1.min.js"></script>
 
 
 </head>
@@ -59,7 +61,7 @@
                 <p class="beauty_p_div"><span class="beauty_pice">{{ good.g_price }}</span> <span class="fontstyle">{{ good.g_mktprice }}</span></p>
                 <p class="bl_num"><span class="beautyacount">{{ good.discount }}折</span><span class="u-beauty-salecount">{{ good.g_sale }}人购买</span>
                 </p>
-                <div class="beautycart"><a href="{% url 'zl:show' good.id %}">购买</a></div>
+                <div class="beautycart"><a  onclick="add_cart({{ good.id }},{{ code }},{{ good.g_inventory }})">购买</a></div>
             </dd>
         </dl>
         {% endfor %}
@@ -93,11 +95,11 @@
 
 <div class="layout-login-area" id="footer">
     <div class="layout-login">
-        <span class="layout-lg-bar">528062317@qq.com </span>
+        <span class="layout-lg-bar"> </span>
         <span class="layout-new-fr"><a href="">反馈</a></span>
     </div>
 
-    <div class="layout-copyright">© 河北-向暖 版权所有</div>
+    <div class="layout-copyright">© 成都-KOP 版权所有</div>
 </div>
 
 <!--以下是底部样式-->
@@ -116,15 +118,15 @@
             </a>
         </li>
         <li>
-            <a href="user.html" data-url="/i/index" page_click_button="底部_我的"
+            <a href="{% url 'yxr:user' %}" data-url="/i/index" page_click_button="底部_我的"
                class="to_personalcenter personalcenternum">
                 <i class="new_icon"><strong style="display: none;"></strong></i>
                 <span>我的</span>
             </a>
         </li>
         <li>
-            <a href="gouwuche.html" data-url="/shoppingcart/index" page_click_button="底部_购物车" class="new_car_center">
-                <i class="new_icon"><strong style="">2</strong></i>
+            <a href="{% url 'cart:cart' %}" data-url="/shoppingcart/index" page_click_button="底部_购物车" class="new_car_center">
+                <i class="new_icon"></i>
                 <span>购物车</span>
             </a>
         </li>

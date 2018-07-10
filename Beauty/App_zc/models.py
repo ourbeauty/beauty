@@ -1,3 +1,4 @@
+
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
@@ -99,11 +100,17 @@ class Goodsorder(models.Model):
 
 
 class Orders(models.Model):
+    # 关联用户
     u = models.ForeignKey('User', models.DO_NOTHING, blank=True, null=True)
+    # 价格
     o_price = models.FloatField()
+    # 订单状态
     o_status = models.IntegerField()
+    # 创建时间
     o_creattime = models.DateTimeField()
+    # 修改时间
     o_changetime = models.DateTimeField()
+    # 商品数量
     o_num = models.IntegerField()
     o_goods = models.ManyToManyField(Goods, through='Goodsorder')
 
@@ -113,10 +120,15 @@ class Orders(models.Model):
 
 
 class User(models.Model):
+    # 用户名称
     u_name = models.CharField(max_length=1024)
+    # 用户密码
     u_pwd = models.CharField(max_length=1024)
+    # 电话
     u_tel = models.IntegerField(blank=True, null=True)
+    # cookie
     u_ticket = models.TextField()
+    # 过期时间
     u_outtime = models.DateTimeField()
 
     class Meta:
