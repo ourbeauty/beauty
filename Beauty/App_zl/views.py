@@ -158,6 +158,35 @@ def classify_list(request, code):
             )
 
 
+def add_one_cart(request):
+    goods_id = request.GET.get('id')
+    g_inventory= request.GET.get('g_inventory')
+    g_code = request.GET.get('code')
+    id = request.session.get('user_id')
+    if id:
+        if int(g_inventory) >= 1:
+            # if user and user.id:
+            user_carts = Cart.objects.filter(g_id=goods_id).first()
+            if user_carts:
+                user_carts.g_num += 1
+                user_carts.save()
+            else:
+                Cart.objects.create(
+                    u_id=id,
+                    g_id=goods_id,
+                    g_num=1,
+                    is_select=1
+                )
+            data = {'code': 200}
+            return JsonResponse(data)
+        else:
+            data = {'code': 900}
+            return JsonResponse(data)
+    else:
+        data = {'code': 2000,'g_code':g_code}
+        return JsonResponse(data)
+
+
 def show(request, goods_id=70):
     if request.method == 'GET':
         goods = Goods.objects.filter(id=goods_id).first()
@@ -225,10 +254,11 @@ def add_cart(request):
     number1 = request.GET.get('number')
     goods_id = request.GET.get('id')
     g_inventory = request.GET.get('g_inventory')
-    if int(g_inventory) >= int(number1):
-        id = request.session.get('user_id')
-        if id:
 
+
+    id = request.session.get('user_id')
+    if id:
+        if int(g_inventory) >= int(number1):
             # if user and user.id:
             user_carts = Cart.objects.filter(g_id=goods_id).first()
             if user_carts:
@@ -244,11 +274,12 @@ def add_cart(request):
             data = {'code': 200}
             return JsonResponse(data)
         else:
-            data = {'code': 1000, 'goods_id': goods_id}
+            data = {'code': 900}
             return JsonResponse(data)
     else:
-        data = {'code': 900}
+        data = {'code': 1000, 'goods_id': goods_id}
         return JsonResponse(data)
+
 
 
 def cart(request):

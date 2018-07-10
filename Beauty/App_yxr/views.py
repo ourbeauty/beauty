@@ -21,6 +21,7 @@ def login(request):
         u_pwb = request.POST.get('password')
         id = request.GET.get('goods_id')
         code = request.GET.get('code')
+        g_code = request.GET.get('g_code')
         # 验证用户是否存在
         user = User.objects.filter(u_name=u_name)
         if user:
@@ -33,6 +34,8 @@ def login(request):
                 # 设置cookie
                 if code =='1000':
                     response = HttpResponseRedirect(reverse('zl:show', args=(id,)))
+                elif code == '2000':
+                    response = HttpResponseRedirect(reverse('zl:classify_list',args=(g_code,)))
                 else:
                     response = HttpResponseRedirect(reverse('yxr:user'))
                 u_outtime = datetime.now() + timedelta(days=1)
