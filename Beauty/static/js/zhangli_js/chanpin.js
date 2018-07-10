@@ -56,7 +56,7 @@ function addShop() {
 function add_cart(id) {
     var number = $('#number1').text();
     var g_inventory= $('#g_inventory').text();
-    alert('1')
+
     // csrf = $('input[name="csrfmiddlewaretoken"]').val();
     $.ajax({
         url: '/App_zl/add_cart/',
@@ -65,13 +65,13 @@ function add_cart(id) {
         dataType: 'json',
         // headers: {'X-CSRFToken': csrf},
         success: function (msg) {
-            alert(2)
+
             if (msg.code == '200') {
 
                 location.href = '/App_zl/cart/'
             }else if(msg.code='1000') {
-                alert(3)
-                location.href='/App_yxr/login/'+msg.goods_id+'/'+msg.code+'/'
+
+                location.href='/App_yxr/login/?goods_id='+msg.goods_id+'&code='+msg.code
             }
             else{
                 alert('商品库存不足！')

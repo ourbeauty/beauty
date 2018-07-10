@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Beauty.iml" filepath="$PROJECT_DIR$/.idea/Beauty.iml" />
+<<<<<<< HEAD
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/Beauty.iml" filepath="$PROJECT_DIR$/.idea/Beauty.iml" />
+>>>>>>> upstream/dev
     </modules>
   </component>
 </project>
