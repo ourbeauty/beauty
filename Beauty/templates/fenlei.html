@@ -189,11 +189,11 @@
 
 <div class="layout-login-area" id="footer">
     <div class="layout-login">
-        <span class="layout-lg-bar">528062317@qq.com </span>
+        <span class="layout-lg-bar"></span>
         <span class="layout-new-fr"><a href="">反馈</a></span>
     </div>
 
-    <div class="layout-copyright">© 河北-向暖 版权所有</div>
+    <div class="layout-copyright">© 成都-KOP 版权所有</div>
 </div>
 
 <!--以下是底部样式-->
@@ -212,15 +212,15 @@
             </a>
         </li>
         <li>
-            <a href="user.html" data-url="/i/index" page_click_button="底部_我的"
+            <a href="{% url 'yxr:user' %}" data-url="/i/index" page_click_button="底部_我的"
                class="to_personalcenter personalcenternum">
                 <i class="new_icon"><strong style="display: none;"></strong></i>
                 <span>我的</span>
             </a>
         </li>
         <li>
-            <a href="gouwuche.html" data-url="/shoppingcart/index" page_click_button="底部_购物车" class="new_car_center">
-                <i class="new_icon"><strong style="">2</strong></i>
+            <a href="{% url 'cart:cart' %}" data-url="/shoppingcart/index" page_click_button="底部_购物车" class="new_car_center">
+                <i class="new_icon"></i>
                 <span>购物车</span>
             </a>
         </li>

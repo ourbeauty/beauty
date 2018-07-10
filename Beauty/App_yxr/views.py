@@ -12,12 +12,16 @@ from App_yxr.models import User, Cart, Orders, Goods, Goodsorder
 
 
 # 用户登录
-def login(request,id,code=1):
+
+def login(request):
     if request.method == 'GET':
         return render(request,'user/user_login.html')
     if request.method == 'POST':
         u_name = request.POST.get('username')
         u_pwb = request.POST.get('password')
+        id = request.GET.get('goods_id')
+        code = request.GET.get('code')
+        g_code = request.GET.get('g_code')
         # 验证用户是否存在
         user = User.objects.filter(u_name=u_name)
         if user:
@@ -28,10 +32,12 @@ def login(request,id,code=1):
                 for i in range(8):
                     u_ticket += random.choice(s)
                 # 设置cookie
-                if code =='1':
+                if code =='1000':
+                    response = HttpResponseRedirect(reverse('zl:show', args=(id,)))
+                elif code == '2000':
+                    response = HttpResponseRedirect(reverse('zl:classify_list',args=(g_code,)))
+                else:
                     response = HttpResponseRedirect(reverse('yxr:user'))
-                elif code == '1000':
-                    response = HttpResponseRedirect(reverse('zl:show',args=(id,)))
                 u_outtime = datetime.now() + timedelta(days=1)
                 response.set_cookie('u_ticket',u_ticket,expires=u_outtime)
                 user[0].u_ticket=u_ticket

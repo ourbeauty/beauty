@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^subgoods/',views.subgoods),
     url(r'^addgoods/',views.addgoods),
     url(r'^add_cart',views.add_cart),
+    url(r'^add_one_cart',views.add_one_cart),
     url(r'^cart/',views.cart),
     url(r'^buy/',views.buy,name='buy'),
     url(r'^order/',views.order),
