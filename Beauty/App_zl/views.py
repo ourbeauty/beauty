@@ -56,7 +56,7 @@ def adddizhi(request):
                     u_email=email,
                     u_detailaddr=address
                 )
-            else:
+            elif addrstatus == '0':
                 Address.objects.create(
                     use_id=id,
                     u_tel=tel,
@@ -68,6 +68,10 @@ def adddizhi(request):
                     u_email=email,
                     u_detailaddr=address
                 )
+            else:
+                return HttpResponseRedirect(
+                reverse('zl:dizhi')
+            )
             return HttpResponseRedirect(
                 reverse('zl:dizhi')
             )
@@ -109,7 +113,7 @@ def changedizhi(request, id):
             addr.u_email = email
             addr.u_detailaddr = address
             addr.save()
-        else:
+        elif addrstatus == '0':
             addr.u_tel = tel
             addr.u_provinces = province
             addr.u_city = city
@@ -118,6 +122,10 @@ def changedizhi(request, id):
             addr.u_email = email
             addr.u_detailaddr = address
             addr.save()
+        else:
+            return HttpResponseRedirect(
+                reverse('zl:dizhi')
+            )
         return HttpResponseRedirect(
             reverse('zl:dizhi')
         )
