@@ -85,7 +85,7 @@
     <div class="prefecture clearfix openwebview" style="margin-bottom: 8px;">
 	 <a href="{% url 'zl:classify_list' new.c_code %}" data-url="/novelty/list" class="cool" page_click_button="新奇库">
         <img class="fadeInImg" src="{{ new.g_info }} " style="height: 260px">
-        <i><img class="fadeInImg" src="/static/images/xinqiku_i.png" style="width: 70%"></i>
+        <i><img class="fadeInImg" src="/static/sy_img/xinqiku_i.png" style="width: 70%"></i>
      </a>
 <div class="prefecture_r">
     <a href="{% url 'zl:classify_list' sale.c_code %}" data-url="/recommendproduct/index" class="sale" page_click_button="特卖汇">
@@ -119,14 +119,14 @@
                 <h3 class="caption_life"><a href="{% url 'zl:classify_list' d1.c_code %}">底妆专区</a></h3>
             <!--<span class="browse">(3.6万人正在浏览)</span>-->
             </div>
-                 <div class="item_brand"><a href="javascript:;" data-url="/index/activity/show/aid/3249" page_click_button="活动">
+                 <div class="item_brand"><a href="{% url 'zl:show' d0.id %}" data-url="/index/activity/show/aid/3249" page_click_button="活动">
                     <img class="fadeInImg" _src="//upload1/2015/0109/5b628ff536acfadbf20fa304389f7b87-142080897751563300.jpg" src="{{ d0.g_info }}">
 
                     </a></div>
             <div class="item_con clearfix" page_click_button="单品">
-                <dl><dt><a href="" data-url="//product/detail?pid=15012273794234&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0108/thumb_468_468_0195b80b910d6e07dad39ba9488a604c-142068899393529400.jpg?imageView2/0/w/608/h/608" src="{{ d1.g_pics }}"></a></dt>
+                <dl><dt><a href="{% url 'zl:show' d1.id %}" data-url="//product/detail?pid=15012273794234&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0108/thumb_468_468_0195b80b910d6e07dad39ba9488a604c-142068899393529400.jpg?imageView2/0/w/608/h/608" src="{{ d1.g_pics }}"></a></dt>
                     <dd><p class="txt">{{ d1.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ d1.g_price}}</em></span><span class="old_price"><i>￥</i><em>{{ d1.g_mktprice }}</em></span></div></dd></dl>
-                <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012276248249&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0109/thumb_608_608_3473c485f3b279ad10589c72099a0fb0-142077246424044300.jpg" src="{{ d2.g_pics}}"></a></dt>
+                <dl><dt><a href="{% url 'zl:show' d2.id %}" data-url="//product/detail?pid=15012276248249&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0109/thumb_608_608_3473c485f3b279ad10589c72099a0fb0-142077246424044300.jpg" src="{{ d2.g_pics}}"></a></dt>
                     <dd><p class="txt">{{ d2.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ d2.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ d2.g_mktprice }}</em></span></div></dd></dl>
             </div>
             </div>
@@ -137,13 +137,13 @@
                     <h3 class="caption_digital"><a href="{% url 'zl:classify_list' y0.c_code %}">眼妆专区</a></h3>
                     <!--<span class="browse">(3.6万人正在浏览)</span>-->
                 </div>
-                <div class="item_brand"><a href="javascript:;" data-url="/index/activity/show/aid/3191" page_click_button="活动">
+                <div class="item_brand"><a href="{% url 'zl:show' y0.id %}" data-url="/index/activity/show/aid/3191" page_click_button="活动">
                         <img class="fadeInImg" _src="sy_img/e070369188bbeec93545a11d97c6e5d3-142063605780044600.jpg" src="{{ y0.g_info }}">
                     </a></div>
                 <div class="item_con clearfix" page_click_button="单品">
-                   <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012273794234&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0108/thumb_468_468_0195b80b910d6e07dad39ba9488a604c-142068899393529400.jpg?imageView2/0/w/608/h/608" src="{{ y1.g_pics }}"></a></dt>
+                   <dl><dt><a href="{% url 'zl:show' y1.id %}" data-url="//product/detail?pid=15012273794234&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0108/thumb_468_468_0195b80b910d6e07dad39ba9488a604c-142068899393529400.jpg?imageView2/0/w/608/h/608" src="{{ y1.g_pics }}"></a></dt>
                     <dd><p class="txt">{{ y1.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ y1.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ y1.g_mktprice }}</em></span></div></dd></dl>
-                <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012276248249&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0109/thumb_608_608_3473c485f3b279ad10589c72099a0fb0-142077246424044300.jpg" src="{{ y2.g_pics}}"></a></dt>
+                <dl><dt><a href="{% url 'zl:show' y2.id %}" data-url="//product/detail?pid=15012276248249&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0109/thumb_608_608_3473c485f3b279ad10589c72099a0fb0-142077246424044300.jpg" src="{{ y2.g_pics}}"></a></dt>
                     <dd><p class="txt">{{ y2.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ y2.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ y2.g_mktprice }}</em></span></div></dd></dl>
             </div>
             </div>
@@ -155,15 +155,15 @@
                     <!--<span class="browse">(3.6万人正在浏览)</span>-->
                 </div>
                 <div class="item_brand">
-                   <a href="javascript:;" data-url="/index/activity/show/aid/3205" page_click_button="活动">
+                   <a href="{% url 'zl:show' c0.id %}" data-url="/index/activity/show/aid/3205" page_click_button="活动">
                         <img class="fadeInImg" _src="sy_img/5f3a79f571e3bce6f849766ffd881faa-142053787039866000.jpg" src="{{ c0.g_info }}">
-                        <span class="special">特卖</span>
+
                     </a></div>
                 <div class="item_con clearfix" page_click_button="单品">
-                    <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012268535225&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0107/thumb_608_608_2a763c9b4730e1e729836150cb14064c-142062372441312500.jpg" src=" {{ c1.g_pics }} "></a></dt>
+                    <dl><dt><a href="{% url 'zl:show' c1.id %}" data-url="//product/detail?pid=15012268535225&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0107/thumb_608_608_2a763c9b4730e1e729836150cb14064c-142062372441312500.jpg" src=" {{ c1.g_pics }} "></a></dt>
                         <dd><p class="txt">{{c1.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ c1.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ c1.g_mktprice }}</em></span></div></dd>
                     </dl>
-                    <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012276432256&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0109/thumb_608_608_6672c393d2b81205554d7d2a1ba4521f-142078611087284600.jpg" src="{{ c2.g_pics }}"></a></dt>
+                    <dl><dt><a href="{% url 'zl:show' c2.id %}" data-url="//product/detail?pid=15012276432256&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0109/thumb_608_608_6672c393d2b81205554d7d2a1ba4521f-142078611087284600.jpg" src="{{ c2.g_pics }}"></a></dt>
                         <dd><p class="txt">{{ c2.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ c2.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ c2.g_mktprice }}</em></span></div></dd>
                     </dl>
                 </div>
@@ -178,15 +178,15 @@
                     <!--<span class="browse">(3.6万人正在浏览)</span>-->
                 </div>
                 <div class="item_brand">
-                   <a href="javascript:;" data-url="/index/activity/show/aid/3205" page_click_button="活动">
+                   <a href="{% url 'zl:show' x0.id %}" data-url="/index/activity/show/aid/3205" page_click_button="活动">
                         <img class="fadeInImg" _src="sy_img/5f3a79f571e3bce6f849766ffd881faa-142053787039866000.jpg" src="{{ x0.g_info }}">
 
                     </a></div>
                 <div class="item_con clearfix" page_click_button="单品">
-                    <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012268535225&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0107/thumb_608_608_2a763c9b4730e1e729836150cb14064c-142062372441312500.jpg" src=" {{ x0.g_pics }} "></a></dt>
+                    <dl><dt><a href="{% url 'zl:show' x0.id %}" data-url="//product/detail?pid=15012268535225&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0107/thumb_608_608_2a763c9b4730e1e729836150cb14064c-142062372441312500.jpg" src=" {{ x0.g_pics }} "></a></dt>
                         <dd><p class="txt">{{x0.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ x0.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ x0.g_mktprice }}</em></span></div></dd>
                     </dl>
-                    <dl><dt><a href="javascript:;" data-url="//product/detail?pid=15012268535225&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0107/thumb_608_608_2a763c9b4730e1e729836150cb14064c-142062372441312500.jpg" src=" {{ x1.g_pics }} "></a></dt>
+                    <dl><dt><a href="{% url 'zl:show' x1.id %}" data-url="//product/detail?pid=15012268535225&amp;from=1"><img class="fadeInImg" _src="//upload1/2015/0107/thumb_608_608_2a763c9b4730e1e729836150cb14064c-142062372441312500.jpg" src=" {{ x1.g_pics }} "></a></dt>
                         <dd><p class="txt">{{x1.g_name }}</p><div class="price clearfix"><span class="now_price"><i>￥</i><em>{{ x1.g_price }}</em></span><span class="old_price"><i>￥</i><em>{{ x1.g_mktprice }}</em></span></div></dd>
                     </dl>
                 </div>
